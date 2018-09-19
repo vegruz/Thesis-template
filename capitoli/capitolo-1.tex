@@ -143,6 +143,7 @@ Altri servizi che \lab{} offre ai propri clienti sono:
 L'intero team utilizza ambienti con sistema operativo \textit{macOS} per le attività di sviluppo. 
 \subsubsection{Elettronica e Hardware}
 A supporto dei processi di prototipazione, \lab{} utilizza diverse piattaforme hardware come ad esempio \textit{Arduino}, \textit{Raspberry Pi}, \textit{Intel UP Square}, \textit{Asus TinkerBoard}.\\
+La programmazione delle schede Arduino avviene tramite l'omonimo ambiente di sviluppo integrato, con linguaggi C/C++.\\
 \lab{}, inoltre, sfrutta le potenzialità della stampa 3D e del disegno CAD per creare modelli prototipali in modo rapido. La disponibilità in azienda di 3 stampanti 3D permette di ridurre il tempo per la realizzazione dei prototipi da proporre al cliente.\\
 Tali tecnologie sono state ampiamente utilizzate per lo sviluppo di progetti come FabKey e SmartMeter, soprattutto in fase di sperimentazione e prototipazione.
 
@@ -167,11 +168,17 @@ L'azienda, in ambito di realtà aumentata, utilizza la piattaforma \textit{Unity
 
 \subsubsection{Tecnologie di supporto}
 A supporto dei processi di sviluppo, l'azienda utilizza la piattaforma web di \textit{GitLab}, che consente la gestione di repository Git e di funzioni trouble ticket.\\
-L'utilizzo di questa piattaforma permette il controllo della configurazione e del versionamento di un software, oltre che la gestione di ticket.
+L'utilizzo di questa piattaforma permette il controllo della configurazione e del versionamento di un software, oltre che la gestione di ticket.\\
+Come detto in precedenza, la piattaforma viene utilizzata anche per la gestione del Product Backlog.
+
+\subsubsection{Sviluppo web}
+Alcuni progetti richiedono lo sviluppo di applicazioni web, nel caso di FabKey, il software CRM per la gestione delle autorizzazioni e il controllo degli accessi nei determinati varchi.\\
+Tale applicazione web è stata sviluppata utilizzando ********* per la parte backend, mentre *****, ******, ****** e ****** per la parte frontend.
+Tale architettura permette di dividere la parte con la quale interagisce l'utente da quella contenente i dati veri e propri.
 
 \subsubsection{Applicazioni mobile}
-Per lo sviluppo di applicazioni mobile, sia Android che iOS, \lab{} utilizza gli ambienti di sviluppo \textit{Android Studio} e \textit{Xcode}.
-\\
+***********************************************************
+Per lo sviluppo di applicazioni mobile, sia Android che iOS, \lab{} utilizza gli ambienti di sviluppo \textit{Android Studio} e \textit{Xcode}.\\
 I linguaggi di programmazione utilizzati sono:
 \begin{itemize}
 \item Android Studio
@@ -186,11 +193,19 @@ I linguaggi di programmazione utilizzati sono:
 		\item Objective-C
 	\end{itemize}
 \end{itemize}
+***********************************************************
 
 \subsubsection{Deep Learning e intelligenza artificiale}
 Intel Movidius è un dispositivo di apprendimento profondo che si può utilizzare per apprendere la programmazione AI.\\
 Utilizzando questo dispositivo, \lab{} sta attualmente sviluppando un progetto che consiste nella previsione di futuri incidenti e infortuni sul lavoro.\\
 Sfruttando le tecniche di \textit{deep learning} messe a disposizione dall'hardware, si è in grado, analizzando grandi dati riguardanti incidenti passati, di effettuare una stima sui possibili incidenti futuri.
+\begin{figure}[H]
+	\begin{center}
+	\includegraphics[scale=0.25]{immagini/accident_prediction.png}
+	\caption{Previsione degli infortuni sul lavoro: schema di funzionamento}
+	\end{center}
+\end{figure}
+
 \section{Lab Network e innovazione}
 \subsection{Filosofia aziendale}
 \lab{} si è sviluppata nell'ambito della \textit{smart specialisation} attraverso logiche di coinvolgimento di una comunità di utenti misti che provengono prevalentemente dal mondo aziendale e accademico. 
@@ -209,7 +224,8 @@ Per questo \lab{} è sempre alla ricerca di nuove tecnologie, in modo da essere 
 
 \begin{flushright}{
 	\slshape    
-	``L'innovazione non può essere dettata, ma può essere coltivata attraverso scoperte imprenditoriali; ciò richiede una leadership, un impegno comune sostenuto tramite collaborazione e investimenti orientati al futuro.''} \\
+	``L'innovazione non può essere dettata, ma può essere coltivata attraverso scoperte imprenditoriali; ciò richiede una leadership, un impegno comune sostenuto tramite collaborazione e investimenti orientati al futuro.''} 
+	
 	\medskip
     --- \textit{Pubblicità progresso, Commissione Europea - 2013}
 \end{flushright}
@@ -217,19 +233,36 @@ Per questo \lab{} è sempre alla ricerca di nuove tecnologie, in modo da essere 
 % Vedi link: https://www.researchitaly.it/smart-specialisation-strategy/
 % Utile: https://www.slideshare.net/TCINetwork/8-clac-18-junefrederic-miribel
 
-\noindent La \textit{Smart Specialisation Strategy} (S.S.S.) è una strategia concepita nell'ambito della politica di coesione riformata dalla Commissione Europea.\\
+\noindent La \textit{Smart Specialisation Strategy} (S.S.S.) è una strategia concepita nell'ambito della politica di coesione riformata dalla Commissione Europea per incentivare l'innovazione regionale al fine di ottenere una crescita economica, permettendo alle regioni di focalizzare i loro punti di forza..\\
 Delinea delle strategie di innovazione concepite a livello regionale ma messe a sistema a livello nazionale con l'obiettivo di:
 \begin{itemize}
 \item sviluppare strategie di innovazione a livello regionale, mirate a valorizzare ambiti produttivi di eccellenza, considerando il posizionamento strategico all'interno del territorio e le prospettive di sviluppo in un quadro economico globale;
 \item aumentare il livello di conoscenza delle Regioni in ambito tecnologico e su settori prioritari;
 \item migliorare il modo in cui gli interventi vengono gestiti e governati e aumentare l'efficacia delle attività di valutazione e monitoraggio dei risultati.
 \end{itemize}
-\\
+\subsubsection{La S.S.S. in pratica}
+I passaggi da seguire per attuare questa strategia sono:
+\begin{itemize}
+\item Analizzare cos'è unico, originale, storico;
+\item Definire e condividere una visione per una regione;
+\item Definire una priorità ed effettuare una scelta;
+\item Trovare l'insieme di politiche migliori da implementare;
+\item Selezionare gli indicatori a cui fare riferimento;
+\item Istituire una governance;
+\item Valutare, rifinire e controllare regolarmente.
+\end{itemize}
+
+\begin{figure}[H]
+	\begin{center}
+	\includegraphics[scale=0.37]{immagini/sss_graph.png}
+	\caption{Parti coinvolte e ruoli nella Smart Specialisation Strategy.}
+	\end{center}
+\end{figure}
 \subsubsection{L'approccio di Lab Network alla S.S.S.}
 Attraverso il portale dedicato che \lab{} utilizza per scambiare informazioni, le aziende e i makers possono lavorare in autonomia, ma condividendo le informazioni che possono essere attinte per le attività che competono a più soggetti.\\
 \\
 L'\gls{SWOT} (Strengths, Weakness, Opportunities, Threats) condotta da \lab{} sulla realtà delle PMI venete, evidenzia come ci sia uno scarso utilizzo di tecnologie dell'informazione e della comunicazione (ICT), scarsa disponibilità di laboratori di proprietà, bassi investimenti in ricerca, difficoltà a sviluppare progetti innovativi e ridotta capacità di reperire risorse e professionalità necessarie. 
 L'obiettivo di \lab{} è quello di colmare queste lacune mettendo a disposizione alle aziende un'area di lavoro a costi contenuti dove poter utilizzare i principali strumenti di innovazione digitale come: stampanti 3D, kit elettronici, macchine a controllo numerico, frese digitali e taglio laser. Tutto questo può essere definito come un laboratorio per studiare la fase prototipale.
 \\
-In pratica \lab{} vuole contribuire a portare l'innovazione e la tecnologia all'interno delle PMI che ancora non si sono interfacciate a questo ''nuovo mondo``.
+In pratica \lab{} vuole contribuire a portare l'innovazione e la tecnologia all'interno delle PMI che ancora non si sono interfacciate a questo ``nuovo mondo''.
 
