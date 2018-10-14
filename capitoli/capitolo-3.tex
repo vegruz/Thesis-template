@@ -8,10 +8,17 @@
 %**************************************************************
 
 %**************************************************************
-\section{Introduzione al progetto}
+\section{Studio del sistema}
 %Il progetto verrà spiegato in questa sezione, senza però scendere in dettagli, evitando quindi riproducibilità.
-Lo sviluppo del progetto è partito da uno studio preliminare sul sistema già esistente composto da una centralina ed un lettore NFC.
+Lo sviluppo del progetto è partito da uno studio preliminare sul sistema già esistente composto da una centralina di controllo ed un lettore di schede NFC.
 Scendendo nei dettagli, la fase di studio è iniziata dalla centralina, composta da una scheda Arduino. Per poterne apprendere il funzionamento, il tutor aziendale mi ha fornito una scheda di test sulla quale eseguire del codice di esempio con dei semplici circuiti elettronici. L'apprendimento si è rivelato piuttosto rapido anche grazie alla vasta disponibilità di materiale online e ad una consolidata community.
+
+Una volta appreso il funzionamento generale di Arduino, ho iniziato lo studio sul codice che governa il comportamento della centralina di controllo, caratterizzato principalmente da 3 fasi:
+
+\begin{itemize}
+\item \textbf{Configurazione iniziale}: il sistema esegue una configurazione iniziale in modo da integrarsi perfettamente nella rete alla quale è collegato;
+\item \textbf{Listener}: una porzione di codice rimane in continuo ascolto per catturare gli eventi derivanti dai moduli collegati
+\end{itemize}
 
 \section{Analisi dei requisiti}
 
