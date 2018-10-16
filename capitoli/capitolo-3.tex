@@ -8,16 +8,68 @@
 %**************************************************************
 
 \section{Pianificazione}
-Anticipatamente all'inizio del progetto, ho redatto assieme al tutor aziendale un piano di lavoro, riportante la pianificazione sia degli obiettivi che della suddivisione temporale.
-
-All'interno di questo documento ho riportato la ripartizione delle ore rispetto alle varie attività.
+Prima dell'inizio del progetto, ho redatto assieme al tutor aziendale un piano di lavoro, all'interno del quale ho riportato gli obiettivi individuati, la pianificazione del lavoro sotto forma di processi, suddivisi a loro volta in attività, ad ognuna delle quali sono state assegnate delle ore di lavoro, la cui somma sarà il totale delle ore a disposizione per lo stage.
 
 \bigskip
 
-\input{capitoli/tabella_ore}
+%\input{capitoli/tabella_ore} % tolta tabella in quanto sotto ho omesso la voce "Progettazione e sviluppo software CRM"
+
+\medskip
+
+DIAGRAMMA DI GANTT???
+
+\medskip
+
+Le attività individuate sono:
+\begin{itemize}
+\item \textbf{Formazione sulle tecnologie utilizzate}: la fase iniziale dello stage consiste nella formazione sulle tecnologie usate, oggetto dei vincoli posti dall'azienda. Questa è stata una fase molto importante per poter lavorare correttamente ed in sincronia con il resto del team;
+
+\item \textbf{Definizione del sistema hardware/software e relativa documentazione}
+\begin{itemize}
+	\item \textbf{Analisi del problema e del dominio applicativo}: la prima attività da svolgere è stata quella di analizzare il problema e il contesto in cui il prodotto dovrà operare. Questa attività include anche lo studio del sistema esistente in modo da comprenderne in modo esaustivo il funzionamento. Questa attività aveva come prodotto in uscita tutti i requisiti relativi alla parte hardware del progetto;
+	\item \textbf{Adattamento e revisione della piattaforma esistente}: una volta compreso il funzionamento del sistema esistente e formalizzato i requisiti ottenuti dall'attività precedente, ho progettato la modifica da apportare per poter lavorare con il nuovo modulo ed in seguito ho riportato il tutto su codice;
+	\item \textbf{Test piattaforma hardware}: ho pianificato ed eseguito alcuni test d'unità che andassero a verificare la correttezza sulle nuove parti di codice;
+	\item \textbf{Stesura documentazione}: per poter garantire un'adeguata manutenzione al prodotto, ho redatto in questa attività tutta la documentazione relativa alle nuove modifiche;
+\end{itemize}
+
+\item \textbf{Modellazione e Stampa 3D}
+\begin{itemize}
+	\item \textbf{Design e modellazione involucro}: ho dedicato, in questa attività, del tempo per la creazione digitale del modello tridimensionale per l'involucro che conterrà l'elettronica del nuovo modulo aggiunto;
+	\item \textbf{Slicing del modello e stampa 3D}: ho preparato il modello creato nell'attività precedente per la stampa andando ad impostare vari parametri al computer ed infine ho provveduto alla stampa vera e propria;
+\end{itemize}
+
+\item \textbf{Sviluppo piattaforma online}
+\begin{itemize}
+	\item \textbf{Pianificazione e analisi dei requisiti}: ho pianificato e analizzato i requisiti per lo sviluppo della piattaforma online. Questo strumento serve al cliente finale per monitorare i vari accessi al varco controllato da FabKey e per gestire gli accessi autorizzati;
+	\item \textbf{Sviluppo della piattaforma con iniziale attenzione al lato server}: a seguito della pianificazione e raccolta dei requisiti, ho proseguito con lo sviluppo della piattaforma, con priorità al lato server;
+\end{itemize}
+
+\item \textbf{Cura dell'interfaccia grafica}: ho prestato attenzione alla cura dell'interfaccia grafica relativa alla piattaforma creata nelle attività precedenti. Durante questa attività ho curato anche a parte frontend dell'applicazione online;
+\item \textbf{Test e verifica presenza bug}: al termine della fase di sviluppo ho eseguito dei test sul sistema completo;
+\item \textbf{Redazione dei manuali d’uso}: in questa attività ho redatto tutti i manuali d'uso sia per l'utente (uso e installazione del sistema), sia per uso interno (assemblaggio e configurazione del sistema);
+
+\item \textbf{Collaudo Finale}
+\begin{itemize}
+	\item \textbf{Collaudo}: collaudo finale prima della presentazione ufficiale;
+\end{itemize}
+\end{itemize}
+
+\medskip
+
+Ho riportato gli obiettivi individuati sul piano di lavoro categorizzandoli secondo tre tipologie come spiegato nella sezione 2.2
+
 
 %**************************************************************
-\section{Studio del sistema}
+\section{Studio iniziale}
+\subsection{Documentazione individuale}
+Gli obiettivi e i vincoli fissati comprendevano alcune tecnologie e strumenti che ancora non facevano parte del mio bagaglio formativo, pertanto lo stage ha avuto inizio con una fase di studio individuale.
+Supportato dal tutor aziendale e dai colleghi, ho iniziato lo studio degli strumenti che l'azienda usa regolarmente durante lo sviluppo di un progetto, come GitLab, la piattaforma online per repository Git. In precedenza, durante alcuni progetti universitari, tra i quali quello di Ingegneria del Software, ho utilizzato il software di versionamento Git tramite la piattaforma di GitHub, simile per molti aspetti a GitLab. Per questo l'apprendimento non è stato difficile.
+
+\medskip
+
+Ha richiesto più tempo l'apprendimento del software di modellazione 3D Rhinoceros. Non essendomi mai approcciato al disegno e modellazione tridimensionale, apprendere le basi è stata un'operazione più lunga del previsto, ma, una volta compreso il principio che sta alla base, la creazione di modelli semplici è un processo abbastanza semplice.
+
+
 %Il progetto verrà spiegato in questa sezione, senza però scendere in dettagli, evitando quindi riproducibilità.
 Lo sviluppo del progetto è partito da uno studio preliminare sul sistema già esistente composto da una centralina di controllo ed un lettore di schede NFC.
 Scendendo nei dettagli, la fase di studio è iniziata dalla centralina, composta da una scheda Arduino. Per poterne apprendere il funzionamento, il tutor aziendale mi ha fornito una scheda di test sulla quale eseguire del codice di esempio con dei semplici circuiti elettronici. L'apprendimento si è rivelato piuttosto rapido anche grazie alla vasta disponibilità di materiale online e ad una consolidata community.
@@ -35,6 +87,8 @@ Una volta appreso il funzionamento generale di Arduino, ho iniziato lo studio su
 Per poter identificare correttamente tutti i requisiti, a seguito di vari colloqui con il tutor aziendale e il cliente, ho definito i vari casi d'uso, disegnandone in seguito i rispettivi diagrammi UML. Ogni riunione è stata riportata su di un verbale e da quest'ultimo ho in seguito ricavato i vari requisiti. In modo da poter identificare ulteriori requisiti ho analizzato approfonditamente i casi d'uso. Una volta individuati tutti i requisiti sono stati riportati in un documento soggetto a versionamento.
 
 \subsection{Strumenti a supporto}
+\subsubsection{Casi d'uso}
+
 \subsection{Formalizzazione dei requisiti}
 
 \section{Progettazione}
