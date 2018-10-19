@@ -111,7 +111,50 @@ I casi d'uso e i relativi diagrammi UML sono stati un ottimo strumento di suppor
 	\end{center}
 \end{figure}
 
+Essendo il progetto composto da due sistemi, FabKey e piattaforma online, i casi d'uso sono stati categorizzati da una notazione univoca, che facilita l'identificazione del caso d'uso nel contesto:
+
+\begin{center}
+\begin{displaymath}UC\_\{Contesto\}.\{IDUnivoco\}\end{displaymath}
+\end{center}
+
+\begin{itemize}
+\item \textbf{Contesto}:
+\begin{itemize}
+\item \textbf{FK}: FabKey;
+\item \textbf{PO}: Piattaforma online di gestione.
+\end{itemize}
+
+\item \textbf{IDUnivoco}: Un codice numerico progressivo che identifica in maniera univoca il caso d'uso a cui si riferisce. Questo codice può essere gerarchico in modo da identificare casi d'uso innestati.
+\end{itemize}
+
+\begin{figure}[H]
+	\begin{center}
+	\includegraphics[scale=0.4]{immagini/usecase/UC_FK_4.png}
+	\caption{Dettaglio del caso d'uso UC\textunderscore FK.4. Si può notare l'uso della notazione sopra descritta.}
+	\end{center}
+\end{figure}
+
+Ogni caso d'uso ha una specifica provenienza e ovvero alcune determinate fonti che lo hanno generato.
+Le stesse sono state la base anche per l'identificazione dei requisiti e sono:
+\begin{itemize}
+\item \textbf{Verbali}: ottenuti trascrivendo quanto emerso durante i colloqui con i portatori di interesse;
+\item \textbf{Le specifiche del sistema}: descrivono quali sono le caratteristiche che il sistema deve avere;
+\item \textbf{Conoscenza del dominio}: la conoscenza del contesto d'utilizzo e la consultazione di materiale ad esso inerente.
+\end{itemize}
+
 \subsection{Formalizzazione dei requisiti}
+Dopo aver individuato tutti i requisiti necessari allo sviluppo del progetto, ho creato una codifica che li potesse identificare in maniera univoca e allo stesso tempo catalogare per tipo e priorità.
+La codifica utilizzata è la seguente:
+
+\begin{center}
+\begin{displaymath}R\_\{Tipologia\}\_\{Priorita\}\{NumeroIdentificativo\}\end{displaymath}
+\end{center}
+
+\textbf{Tipologia}
+\begin{itemize}
+\item \textbf{F}: un requisito di tipo funzionale, cioè che aggiunge funzionalità al sistema;
+\item \textbf{Q}: requisito di qualità, ovvero che, se soddisfatto, aumenta la qualità generale del prodotto;
+\end{itemize}
 
 \section{Progettazione}
 
