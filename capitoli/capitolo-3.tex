@@ -96,6 +96,8 @@ Una volta appreso il funzionamento generale di Arduino, ho iniziato lo studio su
 \item \textbf{Crittografia e HTTP request}: una funzione che si occupa della cifratura dei codici letti e del loro invio tramite richieste HTTP ad un server.
 \end{itemize}
 
+Terminata questa prima fase di studio, è susseguita quella di analisi.
+
 \section{Analisi dei requisiti}
 \subsection{Identificazione}
 Per poter identificare correttamente tutti i requisiti, a seguito di vari colloqui con il tutor aziendale e il cliente, ho definito i vari casi d'uso, disegnandone in seguito i rispettivi diagrammi UML. Ogni riunione è stata riportata su di un verbale e da quest'ultimo ho in seguito ricavato i vari requisiti. Ho anche analizzato approfonditamente i casi d'uso in modo da poter identificare ulteriori requisiti. Una volta individuati tutti i requisiti sono stati riportati in un documento soggetto a versionamento.
@@ -114,7 +116,7 @@ I casi d'uso e i relativi diagrammi UML sono stati un ottimo strumento di suppor
 Essendo il progetto composto da due sistemi, FabKey e piattaforma online, i casi d'uso sono stati categorizzati da una notazione univoca, che facilita l'identificazione del caso d'uso nel contesto:
 
 \begin{center}
-\begin{displaymath}UC\_\{Contesto\}.\{IDUnivoco\}\end{displaymath}
+\textbf{UC\textunderscore [Contesto].[IDUnivoco]}
 \end{center}
 
 \begin{itemize}
@@ -147,16 +149,70 @@ Dopo aver individuato tutti i requisiti necessari allo sviluppo del progetto, ho
 La codifica utilizzata è la seguente:
 
 \begin{center}
-\begin{displaymath}R\_\{Tipologia\}\_\{Priorita\}\{NumeroIdentificativo\}\end{displaymath}
+\textbf{R[Progetto]\textunderscore [Tipologia]\textunderscore [Priorità][NumeroIdentificativo]}
 \end{center}
+
+\textbf{Progetto}
+\begin{itemize}
+\item \textbf{FK}: requisito inerente allo sviluppo della parte elettronica di FabKey;
+\item \textbf{PO}: requisito relativo allo sviluppo del portale online per la gestione degli accessi.
+\end{itemize}
 
 \textbf{Tipologia}
 \begin{itemize}
 \item \textbf{F}: un requisito di tipo funzionale, cioè che aggiunge funzionalità al sistema;
 \item \textbf{Q}: requisito di qualità, ovvero che, se soddisfatto, aumenta la qualità generale del prodotto;
+\item \textbf{P}: requisito prestazionale, mirato a migliorare il prodotto in termini di prestazioni.
 \end{itemize}
 
+\textbf{Priorità}
+\begin{itemize}
+\item \textbf{Ob}: requisiti obbligatori, il cui sviluppo è condizione necessaria per ottenere il risultato finale;
+\item \textbf{De}: requisiti desiderabili, ovvero soddisfarli significa apportare importanti miglioramenti al prodotto anche se non strettamente vincolanti al suo funzionamento;
+\item \textbf{Op}: requisiti opzionali, che apportano valore aggiunto al sistema, ma il cui sviluppo è trascurabile.
+\end{itemize}
+
+\textbf{NumeroIdentificativo}
+
+\medskip
+
+Un codice numerico progressivo che identifica in maniera univoca il requisito a cui si riferisce. Questo codice può essere gerarchico.
+
+\bigskip
+
+Riporto di seguito alcuni dei requisiti individuati:
+
+\medskip
+
+\textbf{Hardware FabKey}
+\begin{itemize}
+\item \textbf{RFK\textunderscore F\textunderscore Ob1 - Il sistema deve permettere la lettura di un codice a barre}: 
+\item \textbf{RFK\textunderscore F\textunderscore Ob2 - Il sistema deve attivare il lettore quando rileva un utente nelle vicinanze}:
+\item \textbf{RFK\textunderscore Q\textunderscore Ob1 - Il modulo di lettura deve essere contenuto in un involucro stampato in 3D}:
+\item \textbf{RFK\textunderscore Q\textunderscore Op1 - L'involucro esterno deve essere modulare ed espandibile per versioni successive}:
+\end{itemize}
+
+\medskip
+
+\textbf{Portale online}
+\begin{itemize}
+\item \textbf{RPO\textunderscore F\textunderscore Ob1 - L'applicazione deve permettere di visualizzare l'elenco degli utenti autorizzati}:
+\item \textbf{RPO\textunderscore F\textunderscore Ob2 - L'applicazione deve permettere di gestire le autorizzazioni}:
+\item \textbf{RPO\textunderscore F\textunderscore Ob2.1 - L'applicazione deve permettere di eliminare un'autorizzazione}:
+\item \textbf{RPO\textunderscore F\textunderscore De1 - L'applicazione deve presentare un'interfaccia grafica completamente scalabile}:
+\end{itemize}
+
+Dopo aver individuato e codificato tutti i requisiti, ho composto una tabella in cui ho riportato il tracciamento tra i requisiti e i casi d'uso, in modo da identificare in quale caso d'uso viene soddisfatto un determinato requisito.
+
 \section{Progettazione}
+
+\begin{figure}[H]
+	\begin{center}
+	\includegraphics[scale=0.4]{immagini/schema_labkey.jpg}
+	\caption{Schema di funzionamento di FabKey.}
+	\small{\textbf{Fonte:} \url{https://www.labkey.it}}
+	\end{center}
+\end{figure}
 
 \section{Codifica}
 
