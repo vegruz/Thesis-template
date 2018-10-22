@@ -136,23 +136,25 @@ Essendo il progetto composto da due sistemi, FabKey e piattaforma online, i casi
 	\end{center}
 \end{figure}
 
-Ogni caso d'uso ha una specifica provenienza e ovvero alcune determinate fonti che lo hanno generato.
-Le stesse sono state la base anche per l'identificazione dei requisiti e sono:
+Ogni caso d'uso ha una specifica provenienza, ovvero alcune determinate fonti che lo hanno generato.
+Queste sono:
 \begin{itemize}
 \item \textbf{Verbali}: ottenuti trascrivendo quanto emerso durante i colloqui con i portatori di interesse;
 \item \textbf{Le specifiche del sistema}: descrivono quali sono le caratteristiche che il sistema deve avere;
 \item \textbf{Conoscenza del dominio}: la conoscenza del contesto d'utilizzo e la consultazione di materiale ad esso inerente.
 \end{itemize}
 
+Ho utilizzato queste fonti anche per l'identificazione dei requisiti.
+
 \subsection{Formalizzazione dei requisiti}
 Dopo aver individuato tutti i requisiti necessari allo sviluppo del progetto, ho creato una codifica che li potesse identificare in maniera univoca e allo stesso tempo catalogare per tipo e priorità.
 La codifica utilizzata è la seguente:
 
 \begin{center}
-\textbf{R[Progetto]\textunderscore [Tipologia]\textunderscore [Priorità][NumeroIdentificativo]}
+\textbf{R[Componente]\textunderscore [Tipologia]\textunderscore [Priorità][Numero Identificativo]}
 \end{center}
 
-\textbf{Progetto}
+\textbf{Componente}
 \begin{itemize}
 \item \textbf{FK}: requisito inerente allo sviluppo della parte elettronica di FabKey;
 \item \textbf{PO}: requisito relativo allo sviluppo del portale online per la gestione degli accessi.
@@ -172,7 +174,7 @@ La codifica utilizzata è la seguente:
 \item \textbf{Op}: requisiti opzionali, che apportano valore aggiunto al sistema, ma il cui sviluppo è trascurabile.
 \end{itemize}
 
-\textbf{NumeroIdentificativo}
+\textbf{Numero Identificativo}
 
 \medskip
 
@@ -240,6 +242,10 @@ La fase di progettazione è stata molto importante, in quanto la sua corretta re
 	\small{\textbf{Fonte:} \url{https://www.labkey.it}}
 	\end{center}
 \end{figure}
+
+%Progettazione online app
+% Si potrebbe inserire un grafico che rappresenti il database MySql
+%ragioni della scelta del db relazionale
 
 \section{Codifica}
 
