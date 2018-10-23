@@ -225,6 +225,7 @@ Riporto di seguito alcuni dei requisiti individuati:
 Dopo aver individuato e codificato tutti i requisiti, ho composto una tabella in cui ho riportato il tracciamento tra i requisiti e i casi d'uso, in modo da identificare in quale caso d'uso viene soddisfatto un determinato requisito.
 
 \section{Progettazione}
+\subsection{L'approccio iniziale}
 Ho gestito la progettazione del prodotto in modo separato rispetto alle due componenti principali che ne fanno parte: l'hardware di FabKey (composto da centralina e lettore) e l'applicazione online per la gestione delle autorizzazioni. Per comodità chiamerò queste due componenti \textbf{HWFabKey} e \textbf{Gestionale accessi} rispettivamente.
 
 \medskip
@@ -233,7 +234,15 @@ La fase di progettazione è stata molto importante, in quanto la sua corretta re
 
 \bigskip
 
-\textbf{Progettazione di HWFabKey}
+\subsection{Progettazione di HWFabKey}
+
+Le componenti alle quali dovevo prestare particolare attenzione durante la fase di progettazione erano quattro:
+\begin{itemize}
+\item \textbf{Gestione delle componenti elettroniche che compongono il lettore di codice a barre}: durante la progettazione ho creato lo schema per i collegamenti del lettore di codici a barre (composto da diverse componenti elettroniche), prestando attenzione a non creare interferenze con altre componenti già collegate nella versione esistente, come ad esempio il circuito apri-porta;
+\item \textbf{Sicurezza nella trasmissione dei dati}: i dati trasmessi verso il server andavano crittografati per evitare di incorrere in alcuni problemi di sicurezza;
+\item \textbf{Protocollo di comunicazione con il server}: dovevo scegliere in questa fase in che modo la centralina avrebbe comunicato con il server, analizzando pro e contro delle varie alternative.
+\item \textbf{Creazione e stampa 3D dell'involucro}: dopo aver abbozzato su carta alcune ipotesi e averne discusso le caratteristiche con il tutor, ho disegnato e stampato in 3D l'involucro;
+\end{itemize}
 
 \begin{figure}[H]
 	\begin{center}
@@ -242,6 +251,45 @@ La fase di progettazione è stata molto importante, in quanto la sua corretta re
 	\small{\textbf{Fonte:} \url{https://www.labkey.it}}
 	\end{center}
 \end{figure}
+
+\subsubsection{Gestione dell'elettronica}
+L'utilizzo del nuovo modulo per la lettura di codici a barre ha comportato la gestione di 4 nuove componenti hardware, le quali andavano collegate ad Arduino senza interferire con le componenti base del sistema.
+Ho risolto tutto questo disegnando lo schema completo e aiutandomi con un simulatore.
+
+\begin{figure}[H]
+	\begin{center}
+	\includegraphics[scale=0.065]{immagini/lettore_barcode.jpg}
+	\caption{Una delle componenti elettroniche che compongono il lettore di codici a barre. Si tratta del vero e proprio lettore ottico.}
+	\end{center}
+\end{figure}
+
+\subsubsection{Sicurezza nella trasmissione dati}
+Il maggior problema che ho riscontrato nella gestione della trasmissione dei dati è stato quello riguardante la sicurezza. A primo impatto ho pensato all'uso di una codifica con funzioni crittografiche hash, come ad esempio MD5 o SHA-1, ma non avevo preso in considerazione un aspetto molto importante: la memoria disponibile. 
+
+\begin{figure}[H]
+	\begin{center}
+	\includegraphics[scale=0.4]{immagini/hash.png}
+	\caption{Esempio di funzione hash. Risultato dei primi quattro byte della funzione hash SHA-1.}
+	\small{\textbf{Fonte:} \url{https://it.wikipedia.org/wiki/Hash}}
+	\end{center}
+\end{figure}
+
+Essendo abituato a lavorare con computer la cui potenza di calcolo è trascurabile con questo tipo di operazioni, ho tralasciato questo aspetto, ma l'hardware a disposizione disponeva di risorse estremamente limitate. Nel caso specifico 2 KB di memoria SRAM non erano sufficienti per la gestione dell'intero programma di controllo e contemporaneamente memorizzare una variabile di 40 byte o più, contenente la stringa con codifica hash. Per cui, collaborando con un collega, abbiamo ideato un algoritmo di crittografia semplificato basato sul principio della funzione hash, ma in grado di produrre un output nettamente ridotto.
+
+
+\subsubsection{Protocollo di comunicazione}
+
+\subsubsection{Progettazione dell'involucro e stampa 3D}
+L'idea era di realizzare un involucro in grado di contenere tutte le componenti elettroniche del lettore e che fosse allo stesso tempo il più compatto possibile.
+Per prima cosa ho abbozzato dei disegni con alcune ipotesi sulle forme generali e, una volta approvato dal tutor, ho iniziato la creazione del modello tridimensionale.
+
+\begin{figure}[H]
+	\begin{center}
+	\includegraphics[scale=0.37]{immagini/render.png}
+	\caption{La prima versione dell'involucro per il lettore di codici a barre.}
+	\end{center}
+\end{figure}
+
 
 %Progettazione online app
 % Si potrebbe inserire un grafico che rappresenti il database MySql
