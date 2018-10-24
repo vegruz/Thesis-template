@@ -253,8 +253,8 @@ Le componenti alle quali dovevo prestare particolare attenzione durante la fase 
 \end{figure}
 
 \subsubsection{Gestione dell'elettronica}
-L'utilizzo del nuovo modulo per la lettura di codici a barre ha comportato la gestione di 4 nuove componenti hardware, le quali andavano collegate ad Arduino senza interferire con le componenti base del sistema.
-Ho risolto tutto questo disegnando lo schema completo e aiutandomi con un simulatore.
+L'utilizzo del nuovo modulo per la lettura di codici a barre ha comportato la gestione di 4 nuove componenti elettroniche, le quali andavano collegate ad Arduino senza interferire con le componenti base del sistema.
+Ho risolto tutto questo disegnando lo schema completo ed aiutandomi con un simulatore.
 
 \begin{figure}[H]
 	\begin{center}
@@ -314,6 +314,19 @@ Una volta ottenuto il modello finito, ho configurato il processo di stampa grazi
 %ragioni della scelta del db relazionale
 
 \subsection{Progettazione del gestionale accessi}
+L'applicazione web per la gestione delle autorizzazioni è composta da un lato frontend e da un lato backend. La prima parte è composta dall'interfaccia grafica e dalle componenti lato client, mentre la seconda contiene il database e le funzioni per l'elaborazione della risposta alle chiamate http da parte della centralina.
+
+\subsubsection{Interfaccia grafica}
+
+\begin{figure}[H]
+	\begin{center}
+	\includegraphics[scale=0.4]{immagini/accessi_gestionale.png}
+	\caption{Schermata del pannello di controllo degli accessi.}
+	\end{center}
+\end{figure}
+
+\subsubsection{Database}
+Per la raccolta dei dati abbiamo scelto di creare un database di tipo relazionale SQL.
 
 \section{Codifica}
 
