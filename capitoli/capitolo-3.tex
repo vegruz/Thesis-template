@@ -278,6 +278,16 @@ Essendo abituato a lavorare con computer la cui potenza di calcolo è trascurabi
 
 
 \subsubsection{Protocollo di comunicazione}
+Uno dei requisiti prevedeva lo scambio di informazioni tra la centralina di controllo, connessa in rete tramite cavo LAN, e il server centrale, contenente il database con gli accessi autorizzati.
+Il nostro compito era di soddisfare questo requisito in modo che la comunicazione fosse il più rapida possibile.
+La soluzione adottata consiste in una semplice chiamata HTTP verso il server: viene creato un \textit{URL} composto dall'indirizzo del server e il codice di accesso richiesto, codificato tramite l'algoritmo sopra descritto; il server, ricevuta la richiesta, ricava dall'\textit{URL} il codice crittografato e lo confronta con i dati presenti nel database, rispondendo con un segnale positivo o negativo.
+
+\begin{figure}[H]
+	\begin{center}
+	\includegraphics[scale=0.37]{immagini/comunicazione_http.png}
+	\caption{Schema di comunicazione Centralina/Server.}
+	\end{center}
+\end{figure}
 
 \subsubsection{Progettazione dell'involucro e stampa 3D}
 L'idea era di realizzare un involucro in grado di contenere tutte le componenti elettroniche del lettore e che fosse allo stesso tempo il più compatto possibile.
@@ -290,10 +300,20 @@ Per prima cosa ho abbozzato dei disegni con alcune ipotesi sulle forme generali 
 	\end{center}
 \end{figure}
 
+Una volta ottenuto il modello finito, ho configurato il processo di stampa grazie al software open source Cura di Ultimaker. Grazie a questa applicazione è possibile, dopo aver impostato i diversi parametri, simulare la stampa, in modo da verificare eventuali errori di configurazione o sul modello.
+
+\begin{figure}[H]
+	\begin{center}
+	\includegraphics[scale=0.37]{immagini/simulatore_stampa.png}
+	\caption{Un componente dell'involucro durante la simulazione con il software Cura.}
+	\end{center}
+\end{figure}
 
 %Progettazione online app
 % Si potrebbe inserire un grafico che rappresenti il database MySql
 %ragioni della scelta del db relazionale
+
+\subsection{Progettazione del gestionale accessi}
 
 \section{Codifica}
 
