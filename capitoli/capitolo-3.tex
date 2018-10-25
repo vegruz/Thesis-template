@@ -238,9 +238,9 @@ La fase di progettazione è stata molto importante, in quanto la sua corretta re
 
 Le componenti alle quali dovevo prestare particolare attenzione durante la fase di progettazione erano quattro:
 \begin{itemize}
-\item \textbf{Gestione delle componenti elettroniche che compongono il lettore di codice a barre}: durante la progettazione ho creato lo schema per i collegamenti del lettore di codici a barre (composto da diverse componenti elettroniche), prestando attenzione a non creare interferenze con altre componenti già collegate nella versione esistente, come ad esempio il circuito apri-porta;
+\item \textbf{Gestione delle componenti elettroniche che compongono il lettore di codice a barre}: durante la progettazione ho ideato lo schema per i collegamenti del lettore di codici a barre (composto da diverse componenti elettroniche), prestando attenzione a non creare interferenze con altre componenti già collegate nella versione esistente, come ad esempio il circuito apri porta;
 \item \textbf{Sicurezza nella trasmissione dei dati}: i dati trasmessi verso il server andavano crittografati per evitare di incorrere in alcuni problemi di sicurezza;
-\item \textbf{Protocollo di comunicazione con il server}: dovevo scegliere in questa fase in che modo la centralina avrebbe comunicato con il server, analizzando pro e contro delle varie alternative.
+\item \textbf{Protocollo di comunicazione con il server}: dovevo scegliere in questa fase il modo in cui la centralina avrebbe comunicato con il server, analizzando pro e contro delle varie alternative.
 \item \textbf{Creazione e stampa 3D dell'involucro}: dopo aver abbozzato su carta alcune ipotesi e averne discusso le caratteristiche con il tutor, ho disegnato e stampato in 3D l'involucro;
 \end{itemize}
 
@@ -274,12 +274,12 @@ Il maggior problema che ho riscontrato nella gestione della trasmissione dei dat
 	\end{center}
 \end{figure}
 
-Essendo abituato a lavorare con computer la cui potenza di calcolo è trascurabile con questo tipo di operazioni, ho tralasciato questo aspetto, ma l'hardware a disposizione disponeva di risorse estremamente limitate. Nel caso specifico 2 KB di memoria SRAM non erano sufficienti per la gestione dell'intero programma di controllo e contemporaneamente memorizzare una variabile di 40 byte o più, contenente la stringa con codifica hash. Per cui, collaborando con un collega, abbiamo ideato un algoritmo di crittografia semplificato basato sul principio della funzione hash, ma in grado di produrre un output nettamente ridotto.
+Nell'hardware a disposizione le risorse erano estremamente limitate: avevo tralasciato questo aspetto dal momento che ho sempre lavorato con dispositivi la cui potenza di calcolo era trascurabile per questo tipo di operazioni. Nel caso specifico, 2 KB di memoria SRAM non erano sufficienti per la gestione dell'intero programma di controllo e contemporaneamente memorizzare una variabile di 40 byte o più, contenente la stringa con codifica hash. Per cui, collaborando con un collega, abbiamo ideato un algoritmo di crittografia semplificato, basato sul principio della funzione hash, ma in grado di produrre un output nettamente ridotto.
 
 
 \subsubsection{Protocollo di comunicazione}
 Uno dei requisiti prevedeva lo scambio di informazioni tra la centralina di controllo, connessa in rete tramite cavo LAN, e il server centrale, contenente il database con gli accessi autorizzati.
-Il nostro compito era di soddisfare questo requisito in modo che la comunicazione fosse il più rapida possibile.
+Il compito del team era di soddisfare questo requisito in modo che la comunicazione fosse il più rapida possibile.
 La soluzione adottata consiste in una semplice chiamata HTTP verso il server: viene creato un \textit{URL} composto dall'indirizzo del server e il codice di accesso richiesto, codificato tramite l'algoritmo sopra descritto; il server, ricevuta la richiesta, ricava dall'\textit{URL} il codice crittografato e lo confronta con i dati presenti nel database, rispondendo con un segnale positivo o negativo.
 
 \begin{figure}[H]
@@ -314,9 +314,9 @@ Una volta ottenuto il modello finito, ho configurato il processo di stampa grazi
 %ragioni della scelta del db relazionale
 
 \subsection{Progettazione del gestionale accessi}
-L'applicazione web per la gestione delle autorizzazioni è composta da un lato frontend e da un lato backend. La prima parte è composta dall'interfaccia grafica e dalle componenti lato client, mentre la seconda contiene il database e le funzioni per l'elaborazione della risposta alle chiamate http da parte della centralina.
+L'applicazione web per la gestione delle autorizzazioni è composta da un lato frontend e da un lato backend. La prima parte è formata dall'interfaccia grafica e dalle componenti lato client, mentre la seconda contiene il database e le funzioni per l'elaborazione della risposta alle chiamate http da parte della centralina.
 
-\subsubsection{Interfaccia grafica}
+\subsubsection{Frontend - Interfaccia grafica}
 
 \begin{figure}[H]
 	\begin{center}
@@ -325,8 +325,10 @@ L'applicazione web per la gestione delle autorizzazioni è composta da un lato f
 	\end{center}
 \end{figure}
 
-\subsubsection{Database}
+\subsubsection{Backend - Database}
 Per la raccolta dei dati abbiamo scelto di creare un database di tipo relazionale SQL.
+
+\subsubsection{Backend - Funzioni di risposta}
 
 \section{Codifica}
 
