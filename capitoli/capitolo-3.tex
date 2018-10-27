@@ -317,20 +317,51 @@ Una volta ottenuto il modello finito, ho configurato il processo di stampa grazi
 L'applicazione web per la gestione delle autorizzazioni è composta da un lato frontend e da un lato backend. La prima parte è formata dall'interfaccia grafica e dalle componenti lato client, mentre la seconda contiene il database e le funzioni per l'elaborazione della risposta alle chiamate http da parte della centralina.
 
 \subsubsection{Frontend - Interfaccia grafica}
+Facendo riferimento ai casi d'uso, ho iniziato a progettare l'interfaccia grafica della WebApp, definendo le varie sezioni di cui sarà composta.
+Ho previsto un menu di navigazione laterale contenente i collegamenti a tutte le pagine presenti.
 
 \begin{figure}[H]
 	\begin{center}
-	\includegraphics[scale=0.4]{immagini/accessi_gestionale.png}
+	\includegraphics[scale=0.32]{immagini/dashboard_crm.png}
+	\caption{Schermata principale del gestionale.}
+	\end{center}
+\end{figure}
+
+Le sezioni presenti sono:
+\begin{itemize}
+\item \textbf{Schermata di login}: per poter accedere all'applicazione è necessario collegarsi al sistema con le proprie credenziali ed è possibile effettuarlo in questa schermata;
+\item \textbf{Dashboard}: rappresenta la pagina iniziale dopo il login; fornisce all'utente alcune informazioni generali sul sistema, ad esempio il numero di utenti attivi, i varchi, gli accessi effettuati in giornata e una statistica sugli accessi;
+\item \textbf{Utenti}: è la pagina che permette la gestione degli utenti con operazioni di inserimento, modifica, eliminazione e assegnazione di una chiave;
+\item \textbf{Strutture}: l'applicazione permette tramite questa pagina la gestione di strutture geograficamente dislocate permettendo di aggiungerne di nuove, eliminare le presenti o modificarle;
+\item \textbf{Varchi}: i varchi rappresentano le porte di una struttura, pertanto ogni varco è associato ad una struttura;
+\item \textbf{Utenti Varchi}: è la sezione che permette di assegnare un utente ad uno o più varchi, in parole povere l'utente può definire quale utente può attraversare determinate porte;
+\item \textbf{Accessi}: viene proposto in questa pagina un log degli accessi effettuati con dettagli su utente, varco e orario dell'accesso.
+\end{itemize}
+
+\begin{figure}[H]
+	\begin{center}
+	\includegraphics[scale=0.32]{immagini/accessi_crm.png}
 	\caption{Schermata del pannello di controllo degli accessi.}
 	\end{center}
 \end{figure}
 
 \subsubsection{Backend - Database}
 Per la raccolta dei dati abbiamo scelto di creare un database di tipo relazionale SQL.
+Ho previsto assieme a team la creazione di tabelle che andassero a rappresentare i vari elementi caratterizzanti del sistema: gli utenti, i varchi, le strutture e alcune tabelle di collegamento per le relazioni di tipo N-N.
+Essendo una tecnologia a me già nota, è stata relativamente semplice la progettazione logica del database, portata a termine con il supporto di appositi schemi E-R.
 
-\subsubsection{Backend - Funzioni di risposta}
+\subsubsection{Backend - Funzione di risposta}
+Parte dell'applicazione è la funzione che gestisce le richieste da parte della centralina. Il principio di funzionamento di questa procedura è relativamente semplice: alla richiesta HTTP della centralina viene estrapolata la chiave crittografata e il varco dal quale è arrivata la richiesta; successivamente si confrontano queste informazioni con i record presenti nel database tramite una query SQL e viene fornita una risposta positiva o negativa. 
 
-\section{Codifica}
+\section{Codifica e realizzazione}
+% html, css, javascript, php, mysql, c, bootstrap (o wordpress), librerie Arduino
+Per la fase di codifica conoscevo già la maggior parte delle tecnologie adottate, ma in questo contesto mi sono ritrovato ad utilizzarle in ambienti nuovi e con vincoli diversi da quelli abituali. Per esempio, il linguaggio C 
+
+Strumenti e linguaggi utilizzati:
+\begin{itemize}
+\item \textbf{Arduino IDE e linguaggio C}: per la programmazione del microcontrollore ATMega presente nella scheda Arduino, ho usato l'IDE fornito da Arduino stessa e il linguaggio di programmazione richiesto è il C. Nonostante fossi già ad un buon livello di conoscenza di programmazione con linguaggio C, la trascrizione in codice di quanto progettato non è stata immediata. Questo a causa delle diverse librerie da utilizzare, le cui funzioni andavano studiate nel comportamento.
+\item \textbf{Librerie Arduino}: ogni particolare componente elettronico disponeva di una specifica libreria per controllarne il funzionamento. 
+\end{itemize}
 
 \section{Verifica e validazione}
 
