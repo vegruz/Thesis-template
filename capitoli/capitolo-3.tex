@@ -361,7 +361,7 @@ Strumenti e linguaggi utilizzati:
 \begin{itemize}
 \item \textbf{Arduino IDE e linguaggio C}: per la programmazione del microcontrollore ATMega presente nella scheda Arduino, ho usato l'IDE fornito da Arduino stessa e il linguaggio di programmazione richiesto è il C. Nonostante fossi già ad un buon livello di conoscenza di programmazione con linguaggio C, la trascrizione in codice di quanto progettato non è stata immediata. Questo a causa delle diverse librerie da utilizzare, le cui funzioni andavano studiate nel comportamento.
 \item \textbf{Librerie Arduino}: ogni particolare componente elettronico disponeva di una specifica libreria per controllarne il funzionamento. Prima di iniziare la codifica finale ho dovuto studiare le funzioni specifiche di queste librerie che sarei andato ad utilizzare.
-\item \textbf{PHP}: Laravel framework e Crudbooster (Laravel CRUD generator), CRUD (Create, Read, Update, Delete)
+\item \textbf{PHP e Laravel}: per la codifica della componente backend del gestionale ho utilizzato il linguaggio PHP con il framework Laravel, caratterizzato da un pattern di tipo Model-View-Controller. Per la gestione del Controller ho sfruttato il supporto fornito da CRUDBooster, un CRUD (Create, Read, Update, Delete) generator che, tramite un sistema a ``scaffolding'', automatizza la creazione di oggetti e interfacce. Queste per me sono state tecnologie nuove e hanno richiesto un periodo di studio individuale precedente alla fase di codifica.
 \end{itemize}
 
 \section{Verifica e validazione}
@@ -398,5 +398,7 @@ Con questa procedura ho riscontrato, come atteso, che circa nel 90\% dei casi la
 \subsubsection{Test gestionale utente}
 Parallelamente ad Arduino, e quindi alla centralina, dovevo eseguire dei test anche sulla piattaforma online di gestione degli accessi.
 Anche in questo caso ho previsto alcuni test di unità sul codice PHP che gestisce la parte dinamica dell'applicazione. Per farlo ho utilizzato il framework di testing PHPUnit, incluso nel framework Laravel; ho isolato singolarmente le funzionalità implementate oggetto di test e, per ognuna di queste, scritto degli snippet per simularne il funzionamento sia in condizioni normali che anomale.
+
+Laravel mette inoltre a disposizione un API di semplice utilizzo per effettuare chiamate HTTP e verificare l'output di tali chiamate. Ho utilizzato queste funzionalità per testare l'applicazione in tutte le sue parti, simulando l'utilizzo da parte di un utente, ma ho anche testato la funzione che gestisce le chiamate HTTP da parte della centralina, simulando l'invio di alcune chiavi e analizzando la risposta del server.
 
 \section{Visione generale del progetto}
