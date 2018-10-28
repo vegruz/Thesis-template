@@ -360,9 +360,43 @@ Per la fase di codifica conoscevo già la maggior parte delle tecnologie adottat
 Strumenti e linguaggi utilizzati:
 \begin{itemize}
 \item \textbf{Arduino IDE e linguaggio C}: per la programmazione del microcontrollore ATMega presente nella scheda Arduino, ho usato l'IDE fornito da Arduino stessa e il linguaggio di programmazione richiesto è il C. Nonostante fossi già ad un buon livello di conoscenza di programmazione con linguaggio C, la trascrizione in codice di quanto progettato non è stata immediata. Questo a causa delle diverse librerie da utilizzare, le cui funzioni andavano studiate nel comportamento.
-\item \textbf{Librerie Arduino}: ogni particolare componente elettronico disponeva di una specifica libreria per controllarne il funzionamento. 
+\item \textbf{Librerie Arduino}: ogni particolare componente elettronico disponeva di una specifica libreria per controllarne il funzionamento. Prima di iniziare la codifica finale ho dovuto studiare le funzioni specifiche di queste librerie che sarei andato ad utilizzare.
+\item \textbf{PHP}: Laravel framework e Crudbooster (Laravel CRUD generator), CRUD (Create, Read, Update, Delete)
 \end{itemize}
 
 \section{Verifica e validazione}
+\subsection{Test}
+Al fine di collaudare e validare il prodotto ho previsto diversi test di unità e di sistema per verificare la correttezza di porzioni di codice e la loro integrazione nel sistema completo.
+\subsubsection{Test del codice di Arduino}
+Effettuare dei test di unità direttamente sulla scheda Arduino avrebbe dato vita ad un processo ripetitivo e lento composto da:
+\begin{itemize}
+\item Modificare il codice;
+\item Compilarlo e caricarlo sulla scheda Arduino;
+\item Osservare il comportamento e trarre ipotesi sul suo funzionamento, positivo o negativo che sia;
+\item Ripetere i passaggi.
+\end{itemize}
+
+Per questo motivo ho deciso di testare la qualità del codice scritto facendolo eseguire direttamente al computer. 
+I test di unità che ho previsto avevano la seguente struttura:
+\begin{enumerate}
+\item Per prima cosa ho isolato la parte di codice di interesse, rendendola eseguibile come programma esterno;
+\item Ho composto una previsione di output anche relazionata all'eventuale input fornito all'unità;
+\item Nel caso in cui la porzione di codice effettuasse chiamate a funzioni di librerie esterne, ho creato dei mock-up che avrebbero simulato il comportamento di tali procedure, in modo da testare esclusivamente la qualità del codice scritto da me;
+\item Dopo l'esecuzione del test, se l'output corrisponde alle attese si procede al caricamento del test sulla scheda Arduino, altrimenti si modifica il codice in modo da correggerlo;
+\item Se il comportamento del codice eseguito sulla scheda Arduino è ancora corretto il test è terminato, altrimenti si procede identificando e correggendo la natura del comportamento anomalo.
+\end{enumerate}
+
+\begin{figure}[H]
+	\begin{center}
+	\includegraphics[scale=0.6]{immagini/flow_chart.png}
+	\caption{Diagramma rappresentante l'esecuzione di un test di unità.}
+	\end{center}
+\end{figure}
+
+Con questa procedura ho riscontrato, come atteso, che circa nel 90\% dei casi la porzione di codice aveva lo stesso comportamento sia nell'esecuzione sul computer che sulla scheda Arduino. In questo modo ho ridotto i tempi ottimizzando il processo di test.
+
+\subsubsection{Test gestionale utente}
+Parallelamente ad Arduino, e quindi alla centralina, dovevo eseguire dei test anche sulla piattaforma online di gestione degli accessi.
+Anche in questo caso ho previsto alcuni test di unità sul codice PHP che gestisce la parte dinamica dell'applicazione. Per farlo ho utilizzato il framework di testing PHPUnit, incluso nel framework Laravel; ho isolato singolarmente le funzionalità implementate oggetto di test e, per ognuna di queste, scritto degli snippet per simularne il funzionamento sia in condizioni normali che anomale.
 
 \section{Visione generale del progetto}
