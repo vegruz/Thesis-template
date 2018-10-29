@@ -14,11 +14,11 @@ Prima dell'inizio del progetto, ho redatto assieme al tutor aziendale un piano d
 
 %\input{capitoli/tabella_ore} % tolta tabella in quanto sotto ho omesso la voce "Progettazione e sviluppo software CRM"
 
-\medskip
+%\medskip
 
-DIAGRAMMA DI GANTT???
+%DIAGRAMMA DI GANTT???
 
-\medskip
+%\medskip
 
 Le attività individuate sono:
 \begin{itemize}
@@ -364,6 +364,16 @@ Strumenti e linguaggi utilizzati:
 \item \textbf{PHP e Laravel}: per la codifica della componente backend del gestionale ho utilizzato il linguaggio PHP con il framework Laravel, caratterizzato da un pattern di tipo Model-View-Controller. Per la gestione del Controller ho sfruttato il supporto fornito da CRUDBooster, un CRUD (Create, Read, Update, Delete) generator che, tramite un sistema a ``scaffolding'', automatizza la creazione di oggetti e interfacce. Queste per me sono state tecnologie nuove e hanno richiesto un periodo di studio individuale precedente alla fase di codifica.
 \end{itemize}
 
+\textbf{Stampa 3D}
+In questa fase ho realizzato il primo prototipo di involucro con la stampante 3D.
+
+\begin{figure}[H]
+	\begin{center}
+	\includegraphics[scale=0.07]{immagini/stampa_3d_finale.png}
+	\caption{I primi prototipi di involucro stampati in 3D.}
+	\end{center}
+\end{figure}
+
 \section{Verifica e validazione}
 \subsection{Test}
 Al fine di collaudare e validare il prodotto ho previsto diversi test di unità e di sistema per verificare la correttezza di porzioni di codice e la loro integrazione nel sistema completo.
@@ -400,5 +410,48 @@ Parallelamente ad Arduino, e quindi alla centralina, dovevo eseguire dei test an
 Anche in questo caso ho previsto alcuni test di unità sul codice PHP che gestisce la parte dinamica dell'applicazione. Per farlo ho utilizzato il framework di testing PHPUnit, incluso nel framework Laravel; ho isolato singolarmente le funzionalità implementate oggetto di test e, per ognuna di queste, scritto degli snippet per simularne il funzionamento sia in condizioni normali che anomale.
 
 Laravel mette inoltre a disposizione un API di semplice utilizzo per effettuare chiamate HTTP e verificare l'output di tali chiamate. Ho utilizzato queste funzionalità per testare l'applicazione in tutte le sue parti, simulando l'utilizzo da parte di un utente, ma ho anche testato la funzione che gestisce le chiamate HTTP da parte della centralina, simulando l'invio di alcune chiavi e analizzando la risposta del server.
+
+\medskip
+
+Per l'occasione ho creato un file di configurazione dedicato alla fase di test del tipo \verb|.env.testing|, e un database separato, già popolato con dati utili.
+
+Di seguito uno dei test eseguiti per analizzare l'efficacia delle chiamate HTTP dalla centralina Arduino verso il server:
+\definecolor{bg}{RGB}{240,243,243}
+\usemintedstyle{manni}% Ref test Laravel: https://blog.pusher.com/tests-laravel-applications/
+
+\begin{minted}[bgcolor=bg,
+               frame=lines,
+               framesep=2mm,
+               startinline=true,
+               breaklines=true,
+               fontsize=\small,
+               linenos=true]{php}
+
+public function httpRequestArduino()
+{
+	$data = [
+		'codice_chiave' => "klgfrfteqcabzawpqrft",
+		'id_varco' => "1",
+		'Host' => "fabkey.testing.com",
+		'User-Agent' => "arduino-ethernet",
+		'X-Authorization-Token' => "2c0bc4ab56c59ce277697c53bc6e7860",
+		'X-Authorization-Time' => "12345"
+		];
+	$response = $this->json('POST', '/api/verifica_accesso',$data);
+	$response->assertStatus(200);
+	$response->assertJson(['status' => true]);
+	$response->assertJson(['return_message' => "#1#"]);
+}
+\end{minted}
+
+\medskip
+
+Tale codice simula l'invio di una chiave cifrata che si assume avere permesso d'accesso; se il test non fallisce significa che il server ha risposto correttamente con i valori attesi.
+
+\medskip
+
+Il processo di validazione......
+
+\subsubsection{Collaudo e approvazione}
 
 \section{Visione generale del progetto}
