@@ -347,7 +347,7 @@ Le sezioni presenti sono:
 
 \subsubsection{Backend - Database}
 Per la raccolta dei dati abbiamo scelto di creare un database di tipo relazionale SQL.
-Ho previsto assieme a team la creazione di tabelle che andassero a rappresentare i vari elementi caratterizzanti del sistema: gli utenti, i varchi, le strutture e alcune tabelle di collegamento per le relazioni di tipo N-N.
+Ho previsto assieme al team la creazione di tabelle che andassero a rappresentare i vari elementi caratterizzanti del sistema: gli utenti, i varchi, le strutture e alcune tabelle di collegamento per le relazioni di tipo N-N.
 Essendo una tecnologia a me già nota, è stata relativamente semplice la progettazione logica del database, portata a termine con il supporto di appositi schemi E-R.
 
 \subsubsection{Backend - Funzione di risposta}
@@ -355,20 +355,31 @@ Parte dell'applicazione è la funzione che gestisce le richieste da parte della 
 
 \section{Codifica e realizzazione}
 % html, css, javascript, php, mysql, c, bootstrap (o wordpress), librerie Arduino
-Per la fase di codifica conoscevo già la maggior parte delle tecnologie adottate, ma in questo contesto mi sono ritrovato ad utilizzarle in ambienti nuovi e con vincoli diversi da quelli abituali. Per esempio, il linguaggio C 
+La fase di codifica consiste nell'implementazione di tutte le componenti definite durante la fase di progettazione, applicando le tecnologie selezionate.
 
-Strumenti e linguaggi utilizzati:
+Per prima cosa ho iniziato la codifica della centralina Arduino, le tecnologie coinvolte sono state:
+
 \begin{itemize}
 \item \textbf{Arduino IDE e linguaggio C}: per la programmazione del microcontrollore ATMega presente nella scheda Arduino, ho usato l'IDE fornito da Arduino stessa e il linguaggio di programmazione richiesto è il C. Nonostante fossi già ad un buon livello di conoscenza di programmazione con linguaggio C, la trascrizione in codice di quanto progettato non è stata immediata. Questo a causa delle diverse librerie da utilizzare, le cui funzioni andavano studiate nel comportamento.
 \item \textbf{Librerie Arduino}: ogni particolare componente elettronico disponeva di una specifica libreria per controllarne il funzionamento. Prima di iniziare la codifica finale ho dovuto studiare le funzioni specifiche di queste librerie che sarei andato ad utilizzare.
+\end{itemize}
+
+La traduzione del progetto in codice in questo frangente non è stato per me difficoltoso, ho riscontrato, invece, maggiori problematiche durante la verifica del software, in seguito al caricamento sulla scheda Arduino; grazie ad alcuni test, ho evidenziato che il codice si comportava saltuariamente in maniera anomala rispetto a quanto previsto, creando un flusso in output apparentemente casuale: ho scoperto in seguito che venivano creati dei caratteri casuali in uscita a causa di interferenze provocate dalla comunicazione seriale con il lettore di codici a barre. Il problema è stato risolto apportando alcune modifiche al software, in modo da ignorare questi caratteri dannosi. I test effettuati sono spiegati nella sezione\textbf{~\ref{test}}.
+
+La seconda parte della codifica è stata incentrata sulla creazione del gestionale e le tecnologie utilizzate sono le seguenti:
+
+\begin{itemize}
 \item \textbf{PHP e Laravel}: per la codifica della componente backend del gestionale ho utilizzato il linguaggio PHP con il framework Laravel, caratterizzato da un pattern di tipo Model-View-Controller. Per la gestione del Controller ho sfruttato il supporto fornito da CRUDBooster, un CRUD (Create, Read, Update, Delete) generator che, tramite un sistema a ``scaffolding'', automatizza la creazione di oggetti e interfacce. Queste per me sono state tecnologie nuove e hanno richiesto un periodo di studio individuale precedente alla fase di codifica.
+	\begin{itemize}
+		\item \textbf{Bootstrap}: è un framework frontend per la creazione di componenti lato client, integrato nel framework Laravel. Ho utilizzato la struttura messa a disposizione da Bootstrap per la creazione delle viste.
+	\end{itemize}
 \end{itemize}
 
 \textbf{Stampa 3D}
 
 \medskip
 
-In questa fase ho realizzato il primo prototipo di involucro con la stampante 3D.
+Per completare il prodotto ho realizzato il primo prototipo di involucro con la stampante 3D.
 
 \begin{figure}[H]
 	\begin{center}
@@ -377,9 +388,11 @@ In questa fase ho realizzato il primo prototipo di involucro con la stampante 3D
 	\end{center}
 \end{figure}
 
+Con l'involucro a disposizione ho potuto procedere con l'assemblaggio finale di tutte le componenti elettroniche, terminando così la prima versione del prodotto. A codifica completata, ho concluso con la preparazione dei test di sistema e successivamente con la loro esecuzione.
+
 \section{Verifica e validazione}
-\subsection{Test}
-Al fine di collaudare e validare il prodotto ho previsto diversi test di unità e di sistema per verificare la correttezza di porzioni di codice e la loro integrazione nel sistema completo.
+\subsection{Test}\label{test}
+Al fine di collaudare e validare il prodotto ho previsto diversi test di unità e di sistema per verificare la correttezza di porzioni di codice e la loro integrazione nel sistema completo. I test di unità, a differenza di quelli di sistema, sono stati eseguiti anche durante la fase di codifica, in modo da segnalare ed eliminare tempestivamente la presenza di eventuali bug.
 \subsubsection{Test del codice di Arduino}
 Effettuare dei test di unità direttamente sulla scheda Arduino avrebbe dato vita ad un processo ripetitivo e lento composto da:
 \begin{itemize}
@@ -418,43 +431,17 @@ Laravel mette inoltre a disposizione un API di semplice utilizzo per effettuare 
 
 Per l'occasione ho creato un file di configurazione dedicato alla fase di test del tipo \verb|.env.testing|, e un database separato, già popolato con dati utili.
 
+\medskip
+
 Di seguito uno dei test eseguiti per analizzare l'efficacia delle chiamate HTTP dalla centralina Arduino verso il server:
+
 \definecolor{bg}{RGB}{240,243,243}
 \usemintedstyle{manni}% Ref test Laravel: https://blog.pusher.com/tests-laravel-applications/
+\inputminted[bgcolor=bg, frame=lines, framesep=2mm, startinline=true, breaklines=true, fontsize=\small, linenos=true]{php}{capitoli/code.php}
 
-\begin{minted}[bgcolor=bg,
-               frame=lines,
-               framesep=2mm,
-               startinline=true,
-               breaklines=true,
-               fontsize=\small,
-               linenos=true]{php}
-
-public function httpRequestArduino()
-{
-	$data = [
-		'codice_chiave' => "klgfrfteqcabzawpqrft",
-		'id_varco' => "1",
-		'Host' => "fabkey.testing.com",
-		'User-Agent' => "arduino-ethernet",
-		'X-Authorization-Token' => "2c0bc4ab56c59ce277697c53bc6e7860",
-		'X-Authorization-Time' => "12345"
-		];
-	$response = $this->json('POST', '/api/verifica_accesso',$data);
-	$response->assertStatus(200);
-	$response->assertJson(['status' => true]);
-	$response->assertJson(['return_message' => "#1#"]);
-}
-\end{minted}
-
-\medskip
-
-Tale codice simula l'invio di una chiave cifrata che si assume avere permesso d'accesso; se il test non fallisce significa che il server ha risposto correttamente con i valori attesi.
-
-\medskip
-
-Il processo di validazione......
+Il codice sopra riportato simula l'invio di una chiave cifrata, corrispondente ad un utente con permesso di accesso; se il test fallisce significa che i valori di risposta ottenuti non corrispondono alle attese, al contrario, se il test termina correttamente, l'unità di codice è stata verificata con successo.
 
 \subsubsection{Collaudo e approvazione}
+Ho eseguito il collaudo finale assieme al tutor aziendale 
 
 \section{Visione generale del progetto}
