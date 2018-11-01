@@ -44,7 +44,7 @@ Le attività individuate sono:
 	\item \textbf{Sviluppo della piattaforma con iniziale attenzione al lato server}: a seguito della pianificazione e raccolta dei requisiti, ho proseguito con lo sviluppo della piattaforma, con priorità al lato server;
 \end{itemize}
 
-\item \textbf{Cura dell'interfaccia grafica}: ho prestato attenzione alla cura dell'interfaccia grafica relativa alla piattaforma creata nelle attività precedenti. Durante questa attività ho curato anche la parte frontend dell'applicazione online;
+\item \textbf{Cura dell'interfaccia grafica}: ho prestato attenzione alla cura dell'interfaccia grafica relativa alla piattaforma creata nelle attività precedenti. Durante questa attività ho curato anche la parte front-end dell'applicazione online;
 \item \textbf{Test e verifica presenza bug}: al termine della fase di sviluppo ho eseguito dei test sul sistema completo;
 \item \textbf{Redazione dei manuali d’uso}: in questa attività ho redatto tutti i manuali d'uso sia per l'utente (uso e installazione del sistema), sia per uso interno (assemblaggio e configurazione del sistema);
 
@@ -200,6 +200,7 @@ Riporto di seguito alcuni dei requisiti individuati:
 \hline
 \textbf{RFK\_Q\_Op1} & Qualità \linebreak Opzionale & L'involucro esterno deve essere modulare ed espandibile per versioni successive \\
 \hline
+\caption{Alcuni requisiti individuati per lo sviluppo della parte hardware di FabKey.}
 \end{longtable}
 
 
@@ -219,6 +220,7 @@ Riporto di seguito alcuni dei requisiti individuati:
 \hline
 \textbf{RPO\_F\_De1} & Funzionale \linebreak Desiderabile & L'applicazione deve presentare un'interfaccia grafica completamente scalabile \\
 \hline
+\caption{Alcuni requisiti individuati per lo sviluppo del gestionale online di FabKey.}
 \end{longtable}
 
 
@@ -314,9 +316,9 @@ Una volta ottenuto il modello finito, ho configurato il processo di stampa grazi
 %ragioni della scelta del db relazionale
 
 \subsection{Progettazione del gestionale accessi}
-L'applicazione web per la gestione delle autorizzazioni è composta da un lato frontend e da un lato backend. La prima parte è formata dall'interfaccia grafica e dalle componenti lato client, mentre la seconda contiene il database e le funzioni per l'elaborazione della risposta alle chiamate http da parte della centralina.
+L'applicazione web per la gestione delle autorizzazioni è composta da un lato front-end e da un lato back-end. La prima parte è formata dall'interfaccia grafica e dalle componenti lato client, mentre la seconda contiene il database e le funzioni per l'elaborazione della risposta alle chiamate http da parte della centralina.
 
-\subsubsection{Frontend - Interfaccia grafica}
+\subsubsection{Front-end - Interfaccia grafica}
 Facendo riferimento ai casi d'uso, ho iniziato a progettare l'interfaccia grafica della WebApp, definendo le varie sezioni di cui sarà composta.
 Ho previsto un menu di navigazione laterale contenente i collegamenti a tutte le pagine presenti.
 
@@ -345,12 +347,12 @@ Le sezioni presenti sono:
 	\end{center}
 \end{figure}
 
-\subsubsection{Backend - Database}
+\subsubsection{Back-end - Database}
 Per la raccolta dei dati abbiamo scelto di creare un database di tipo relazionale SQL.
 Ho previsto assieme al team la creazione di tabelle che andassero a rappresentare i vari elementi caratterizzanti del sistema: gli utenti, i varchi, le strutture e alcune tabelle di collegamento per le relazioni di tipo N-N.
 Essendo una tecnologia a me già nota, è stata relativamente semplice la progettazione logica del database, portata a termine con il supporto di appositi schemi E-R.
 
-\subsubsection{Backend - Funzione di risposta}
+\subsubsection{Back-end - Funzione di risposta}
 Parte dell'applicazione è la funzione che gestisce le richieste da parte della centralina. Il principio di funzionamento di questa procedura è relativamente semplice: alla richiesta HTTP della centralina viene estrapolata la chiave crittografata e il varco dal quale è arrivata la richiesta; successivamente si confrontano queste informazioni con i record presenti nel database tramite una query SQL e viene fornita una risposta positiva o negativa. 
 
 \section{Codifica e realizzazione}
@@ -362,16 +364,23 @@ Per prima cosa ho iniziato la codifica della centralina Arduino, le tecnologie c
 \begin{itemize}
 \item \textbf{Arduino IDE e linguaggio C}: per la programmazione del microcontrollore ATMega presente nella scheda Arduino, ho usato l'IDE fornito da Arduino stessa e il linguaggio di programmazione richiesto è il C. Nonostante fossi già ad un buon livello di conoscenza di programmazione con linguaggio C, la trascrizione in codice di quanto progettato non è stata immediata. Questo a causa delle diverse librerie da utilizzare, le cui funzioni andavano studiate nel comportamento.
 \item \textbf{Librerie Arduino}: ogni particolare componente elettronico disponeva di una specifica libreria per controllarne il funzionamento. Prima di iniziare la codifica finale ho dovuto studiare le funzioni specifiche di queste librerie che sarei andato ad utilizzare.
+\begin{itemize}
+	\item \textbf{SPI}: \textit{Serial Peripheral Interface} è un protocollo per la comunicazione seriale sincrona usata per la comunicazione tra microcontrollori. Nello specifico ho utilizzato le funzionalità di questa libreria per la comunicazione tra Arduino Uno e il lettore di codici a barre;
+	\item \textbf{Ethernet}: La centralina è dotata di un modulo aggiuntivo che la equipaggia di una porta Ethernet. L'apposita libreria per l'utilizzo di questa porta è necessaria per la configurazione di rete;
+	
+\end{itemize}
 \end{itemize}
 
 La traduzione del progetto in codice in questo frangente non è stato per me difficoltoso, ho riscontrato, invece, maggiori problematiche durante la verifica del software, in seguito al caricamento sulla scheda Arduino; grazie ad alcuni test, ho evidenziato che il codice si comportava saltuariamente in maniera anomala rispetto a quanto previsto, creando un flusso in output apparentemente casuale: ho scoperto in seguito che venivano creati dei caratteri casuali in uscita a causa di interferenze provocate dalla comunicazione seriale con il lettore di codici a barre. Il problema è stato risolto apportando alcune modifiche al software, in modo da ignorare questi caratteri dannosi. I test effettuati sono spiegati nella sezione\textbf{~\ref{test}}.
 
+\medskip
+
 La seconda parte della codifica è stata incentrata sulla creazione del gestionale e le tecnologie utilizzate sono le seguenti:
 
 \begin{itemize}
-\item \textbf{PHP e Laravel}: per la codifica della componente backend del gestionale ho utilizzato il linguaggio PHP con il framework Laravel, caratterizzato da un pattern di tipo Model-View-Controller. Per la gestione del Controller ho sfruttato il supporto fornito da CRUDBooster, un CRUD (Create, Read, Update, Delete) generator che, tramite un sistema a ``scaffolding'', automatizza la creazione di oggetti e interfacce. Queste per me sono state tecnologie nuove e hanno richiesto un periodo di studio individuale precedente alla fase di codifica.
+\item \textbf{PHP e Laravel}: per la codifica della componente back-end del gestionale ho utilizzato il linguaggio PHP con il framework Laravel, caratterizzato da un pattern di tipo Model-View-Controller. Per la gestione del Controller ho sfruttato il supporto fornito da CRUDBooster, un CRUD (Create, Read, Update, Delete) generator che, tramite un sistema a ``scaffolding'', automatizza la creazione di oggetti e interfacce. Queste per me sono state tecnologie nuove e hanno richiesto un periodo di studio individuale precedente alla fase di codifica.
 	\begin{itemize}
-		\item \textbf{Bootstrap}: è un framework frontend per la creazione di componenti lato client, integrato nel framework Laravel. Ho utilizzato la struttura messa a disposizione da Bootstrap per la creazione delle viste.
+		\item \textbf{Bootstrap}: è un framework front-end per la creazione di componenti lato client, integrato nel framework Laravel. Ho utilizzato la struttura messa a disposizione da Bootstrap per la creazione delle viste.
 	\end{itemize}
 \end{itemize}
 
@@ -441,7 +450,41 @@ Di seguito uno dei test eseguiti per analizzare l'efficacia delle chiamate HTTP 
 
 Il codice sopra riportato simula l'invio di una chiave cifrata, corrispondente ad un utente con permesso di accesso; se il test fallisce significa che i valori di risposta ottenuti non corrispondono alle attese, al contrario, se il test termina correttamente, l'unità di codice è stata verificata con successo.
 
-\subsubsection{Collaudo e approvazione}
-Ho eseguito il collaudo finale assieme al tutor aziendale 
+\subsubsection{Riepilogo finale}
+Al termine dell'esecuzione dei test ho potuto trarre delle conclusioni rispetto alla copertura di codice per quanto riguarda i test di unità e alla copertura dei requisiti per i test di sistema.
+
+\medskip
+
+I test di unità mi sono tornati utili per poter dimostrare la correttezza e la completezza del codice scritto, analizzando porzioni di codice, nella maggior parte dei casi identificate da procedure. Di seguito i risultati di tali test:
+
+
+\renewcommand{\arraystretch}{1.2}
+\begin{longtable}{|p{2.7cm}|l|l|l|}
+\hline
+\textbf{Applicazione} & \textbf{Test eseguiti} & \textbf{Test superati} & \textbf{Copertura} \\ 
+\hline
+\textbf{HWFabKey} & 18 & 18 & 69\%\\ 
+\hline
+\textbf{Gestionale accessi front-end} & 24  & 24 & 72\%\\ 
+\hline
+\textbf{Gestionale accessi back-end} & 33  & 33 & 78\%\\ 
+\hline
+\caption{Risultati dei test di unità.}
+\end{longtable}
+
+I test di sistema, invece, mi hanno permesso di verificare la copertura dei requisiti, confrontando quelli definiti durante la fase di analisi con quelli sviluppati al termine del progetto. Di seguito i risultati:
+
+\begin{longtable}{|p{2.7cm}|l|l|}
+\hline
+\textbf{Test eseguiti} & \textbf{Requisiti definiti} & \textbf{Requisiti soddisfatti} \\ 
+\hline
+11 & 31 & 29\\ 
+\hline
+\caption{Risultati dei test di sistema.}
+\end{longtable}
+
+\subsubsection{Collaudo finale e consegna}
+Al seguito di tutti i test, io e il tutor abbiamo organizzato un collaudo finale convocando il cliente che avrebbe effettuato la prima installazione del prodotto. Il collaudo finale si è svolto simulando tutte le operazioni previste e dimostrando la copertura completa di tutti i requisiti richiesti in fase di analisi.
+La dimostrazione si è conclusa senza imprevisti e con la soddisfazione del cliente, inoltre io, il tutor e il cliente abbiamo firmato un verbale di collaudo che constatava la fine dello sviluppo del progetto e dava la possibilità di procedere con la prima installazione.
 
 \section{Visione generale del progetto}
