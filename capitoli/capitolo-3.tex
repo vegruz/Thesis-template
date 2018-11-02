@@ -320,7 +320,7 @@ L'applicazione web per la gestione delle autorizzazioni è composta da un lato f
 
 \subsubsection{Front-end - Interfaccia grafica}
 Facendo riferimento ai casi d'uso, ho iniziato a progettare l'interfaccia grafica della WebApp, definendo le varie sezioni di cui sarà composta.
-Ho previsto un menu di navigazione laterale contenente i collegamenti a tutte le pagine presenti.
+Ho previsto un menù di navigazione laterale contenente i collegamenti a tutte le pagine presenti.
 
 \begin{figure}[H]
 	\begin{center}
@@ -336,7 +336,7 @@ Le sezioni presenti sono:
 \item \textbf{Utenti}: è la pagina che permette la gestione degli utenti con operazioni di inserimento, modifica, eliminazione e assegnazione di una chiave;
 \item \textbf{Strutture}: l'applicazione permette tramite questa pagina la gestione di strutture geograficamente dislocate permettendo di aggiungerne di nuove, eliminare le presenti o modificarle;
 \item \textbf{Varchi}: i varchi rappresentano le porte di una struttura, pertanto ogni varco è associato ad una struttura;
-\item \textbf{Utenti Varchi}: è la sezione che permette di assegnare un utente ad uno o più varchi, in parole povere l'utente può definire quale utente può attraversare determinate porte;
+\item \textbf{Utenti Varchi}: è la sezione che permette di assegnare un utente ad uno o più varchi; in parole povere l'utente può definire quale utente può attraversare determinate porte;
 \item \textbf{Accessi}: viene proposto in questa pagina un log degli accessi effettuati con dettagli su utente, varco e orario dell'accesso.
 \end{itemize}
 
@@ -356,22 +356,23 @@ Essendo una tecnologia a me già nota, è stata relativamente semplice la proget
 Parte dell'applicazione è la funzione che gestisce le richieste da parte della centralina. Il principio di funzionamento di questa procedura è relativamente semplice: alla richiesta HTTP della centralina viene estrapolata la chiave crittografata e il varco dal quale è arrivata la richiesta; successivamente si confrontano queste informazioni con i record presenti nel database tramite una query SQL e viene fornita una risposta positiva o negativa. 
 
 \section{Codifica e realizzazione}
+\subsection{Tecnologie e linguaggi}
 % html, css, javascript, php, mysql, c, bootstrap (o wordpress), librerie Arduino
 La fase di codifica consiste nell'implementazione di tutte le componenti definite durante la fase di progettazione, applicando le tecnologie selezionate.
 
 Per prima cosa ho iniziato la codifica della centralina Arduino, le tecnologie coinvolte sono state:
 
 \begin{itemize}
-\item \textbf{Arduino IDE e linguaggio C}: per la programmazione del microcontrollore ATMega presente nella scheda Arduino, ho usato l'IDE fornito da Arduino stessa e il linguaggio di programmazione richiesto è il C. Nonostante fossi già ad un buon livello di conoscenza di programmazione con linguaggio C, la trascrizione in codice di quanto progettato non è stata immediata. Questo a causa delle diverse librerie da utilizzare, le cui funzioni andavano studiate nel comportamento.
+\item \textbf{Arduino IDE e linguaggio C}: per la programmazione del microcontrollore ATMega presente nella scheda Arduino, ho usato l'IDE fornito da Arduino stesso e il linguaggio di programmazione richiesto è il C. Nonostante fossi già ad un buon livello di conoscenza di programmazione con linguaggio C, la trascrizione in codice di quanto progettato non è stata immediata, questo a causa delle diverse librerie da utilizzare, le cui funzioni andavano studiate nel comportamento.
 \item \textbf{Librerie Arduino}: ogni particolare componente elettronico disponeva di una specifica libreria per controllarne il funzionamento. Prima di iniziare la codifica finale ho dovuto studiare le funzioni specifiche di queste librerie che sarei andato ad utilizzare.
 \begin{itemize}
 	\item \textbf{SPI}: \textit{Serial Peripheral Interface} è un protocollo per la comunicazione seriale sincrona usata per la comunicazione tra microcontrollori. Nello specifico ho utilizzato le funzionalità di questa libreria per la comunicazione tra Arduino Uno e il lettore di codici a barre;
-	\item \textbf{Ethernet}: La centralina è dotata di un modulo aggiuntivo che la equipaggia di una porta Ethernet. L'apposita libreria per l'utilizzo di questa porta è necessaria per la configurazione di rete;
+	\item \textbf{Ethernet}: la centralina è dotata di un modulo aggiuntivo che la equipaggia di una porta Ethernet. L'apposita libreria per l'utilizzo di questa porta è necessaria per la configurazione di rete;
 	
 \end{itemize}
 \end{itemize}
 
-La traduzione del progetto in codice in questo frangente non è stato per me difficoltoso, ho riscontrato, invece, maggiori problematiche durante la verifica del software, in seguito al caricamento sulla scheda Arduino; grazie ad alcuni test, ho evidenziato che il codice si comportava saltuariamente in maniera anomala rispetto a quanto previsto, creando un flusso in output apparentemente casuale: ho scoperto in seguito che venivano creati dei caratteri casuali in uscita a causa di interferenze provocate dalla comunicazione seriale con il lettore di codici a barre. Il problema è stato risolto apportando alcune modifiche al software, in modo da ignorare questi caratteri dannosi. I test effettuati sono spiegati nella sezione\textbf{~\ref{test}}.
+La traduzione del progetto in codice in questo frangente non è stato per me difficoltoso: ho riscontrato, invece, maggiori problematiche durante la verifica del software, in seguito al caricamento sulla scheda Arduino. Grazie ad alcuni test, ho evidenziato che il codice si comportava saltuariamente in maniera anomala rispetto a quanto previsto, creando un flusso in output apparentemente casuale: ho scoperto in seguito che venivano creati dei caratteri casuali in uscita a causa di interferenze provocate dalla comunicazione seriale con il lettore di codici a barre. Il problema è stato risolto apportando alcune modifiche al software, in modo da ignorare questi caratteri dannosi. I test effettuati sono spiegati nella sezione\textbf{~\ref{test}}.
 
 \medskip
 
@@ -384,11 +385,25 @@ La seconda parte della codifica è stata incentrata sulla creazione del gestiona
 	\end{itemize}
 \end{itemize}
 
-\textbf{Stampa 3D}
+\subsection{Segnalazione bug e relativa risoluzione}
+Non di rado accadeva durante la codifica di riscontrare alcuni bug, oppure di dover integrare alcune caratteristiche al sistema non previste nella progettazione. A questo proposito, durante la fase di progettazione, il team assieme al tutor, aveva concordato una procedura per la gestione di queste situazioni tramite la piattaforma di \textit{GitLab}. Il componente del team che riscontrava un bug o riportava la richiesta di aggiungere nuove funzionalità doveva:
+\begin{itemize}
+\item Creare un nuovo \textit{issue} fornendo un titolo breve ma esaustivo e una descrizione completa di tutti i dettagli allegando, se necessario, schermate o porzioni di codice. Chi avrebbe letto l'issue avrebbe dovuto essere in grado di interpretarlo senza dover approfondire con chi l'aveva creato;
+\item Selezionare un assegnatario, che avrebbe avuto l'onere di risolvere il bug, con la possibilità di assegnare l'issue anche a se stessi;
+\item Etichettare l'issue con una o piu \textit{labels}, per identificare il tipo di problema riportato; nel caso di un problema nella codifica andava riportata la label ``bug'', oppure per l'aggiunta di nuove funzionalità ``enhancement'';
+\item Eventualmente, era possibile creare un nuovo branch nel caso di aggiunta di nuove funzionalità isolate dal branch master;
+\end{itemize}
+
+\subsection{Stampa 3D}
 
 \medskip
 
-Per completare il prodotto ho realizzato il primo prototipo di involucro con la stampante 3D.
+Per completare il prodotto ho realizzato il primo prototipo di involucro con la stampante 3D. 
+
+La procedura per la stampa 3D di un modello, come già sperimentato durante lo studio preliminare, consisteva di tre passaggi strettamente sequenziali:
+\begin{itemize}
+\item \textbf{Pre-riscaldamento e caricamento del materiale}: tramite il pannello di controllo della stampante, dovevo portare in temperatura il piano di stampa a 60 °C e l'ugello di estrusione a 200 °C. Successivamente andava caricato il filamento di materiale che avrei utilizzato per la creazione del modello: le temperature selezionate erano adatte per l'utilizzo di un materiale chiamato PLA (acido polilattico).
+\end{itemize}
 
 \begin{figure}[H]
 	\begin{center}
@@ -405,9 +420,9 @@ Al fine di collaudare e validare il prodotto ho previsto diversi test di unità 
 \subsubsection{Test del codice di Arduino}
 Effettuare dei test di unità direttamente sulla scheda Arduino avrebbe dato vita ad un processo ripetitivo e lento composto da:
 \begin{itemize}
-\item Modificare il codice;
-\item Compilarlo e caricarlo sulla scheda Arduino;
-\item Osservare il comportamento e trarre ipotesi sul suo funzionamento, positivo o negativo che sia;
+\item Modifica del codice;
+\item Compilazione e caricamento sulla scheda Arduino;
+\item Osservazione del comportamento e trarre ipotesi sul suo funzionamento, positivo o negativo che sia;
 \item Ripetere i passaggi.
 \end{itemize}
 
@@ -417,8 +432,8 @@ I test di unità che ho previsto avevano la seguente struttura:
 \item Per prima cosa ho isolato la parte di codice di interesse, rendendola eseguibile come programma esterno;
 \item Ho composto una previsione di output anche relazionata all'eventuale input fornito all'unità;
 \item Nel caso in cui la porzione di codice effettuasse chiamate a funzioni di librerie esterne, ho creato dei mock-up che avrebbero simulato il comportamento di tali procedure, in modo da testare esclusivamente la qualità del codice scritto da me;
-\item Dopo l'esecuzione del test, se l'output corrisponde alle attese si procede al caricamento del test sulla scheda Arduino, altrimenti si modifica il codice in modo da correggerlo;
-\item Se il comportamento del codice eseguito sulla scheda Arduino è ancora corretto il test è terminato, altrimenti si procede identificando e correggendo la natura del comportamento anomalo.
+\item Dopo l'esecuzione del test, se l'output corrispondeva alle attese si procedeva al caricamento del test sulla scheda Arduino, altrimenti si modificava il codice in modo da correggerlo;
+\item Se il comportamento del codice eseguito sulla scheda Arduino era ancora corretto, il test terminava, altrimenti si procedeva identificando e correggendo la natura del comportamento anomalo.
 \end{enumerate}
 
 \begin{figure}[H]
@@ -448,7 +463,7 @@ Di seguito uno dei test eseguiti per analizzare l'efficacia delle chiamate HTTP 
 \usemintedstyle{manni}% Ref test Laravel: https://blog.pusher.com/tests-laravel-applications/
 \inputminted[bgcolor=bg, frame=lines, framesep=2mm, startinline=true, breaklines=true, fontsize=\small, linenos=true]{php}{capitoli/code.php}
 
-Il codice sopra riportato simula l'invio di una chiave cifrata, corrispondente ad un utente con permesso di accesso; se il test fallisce significa che i valori di risposta ottenuti non corrispondono alle attese, al contrario, se il test termina correttamente, l'unità di codice è stata verificata con successo.
+Il codice sopra riportato simula l'invio di una chiave cifrata, corrispondente ad un utente con permesso di accesso. Se il test fallisce significa che i valori di risposta ottenuti non corrispondono alle attese; al contrario, se il test termina correttamente, l'unità di codice è stata verificata con successo.
 
 \subsubsection{Riepilogo finale}
 Al termine dell'esecuzione dei test ho potuto trarre delle conclusioni rispetto alla copertura di codice per quanto riguarda i test di unità e alla copertura dei requisiti per i test di sistema.
@@ -456,7 +471,6 @@ Al termine dell'esecuzione dei test ho potuto trarre delle conclusioni rispetto 
 \medskip
 
 I test di unità mi sono tornati utili per poter dimostrare la correttezza e la completezza del codice scritto, analizzando porzioni di codice, nella maggior parte dei casi identificate da procedure. Di seguito i risultati di tali test:
-
 
 \renewcommand{\arraystretch}{1.2}
 \begin{longtable}{|p{2.7cm}|l|l|l|}
@@ -487,4 +501,4 @@ I test di sistema, invece, mi hanno permesso di verificare la copertura dei requ
 Al seguito di tutti i test, io e il tutor abbiamo organizzato un collaudo finale convocando il cliente che avrebbe effettuato la prima installazione del prodotto. Il collaudo finale si è svolto simulando tutte le operazioni previste e dimostrando la copertura completa di tutti i requisiti richiesti in fase di analisi.
 La dimostrazione si è conclusa senza imprevisti e con la soddisfazione del cliente, inoltre io, il tutor e il cliente abbiamo firmato un verbale di collaudo che constatava la fine dello sviluppo del progetto e dava la possibilità di procedere con la prima installazione.
 
-\section{Visione generale del progetto}
+%\section{Visione generale del progetto}
