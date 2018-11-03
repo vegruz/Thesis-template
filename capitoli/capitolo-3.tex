@@ -8,7 +8,7 @@
 %**************************************************************
 
 \section{Pianificazione}
-Prima dell'inizio del progetto, ho redatto assieme al tutor aziendale un piano di lavoro, all'interno del quale ho riportato gli obiettivi individuati, la pianificazione del lavoro sotto forma di processi, suddivisi a loro volta in attività, ad ognuna delle quali sono state assegnate delle ore di lavoro, la cui somma sarà il totale delle ore a disposizione per lo stage.
+Prima dell'inizio del progetto, ho redatto assieme al tutor aziendale un piano di lavoro. All'interno di questo ho riportato gli obiettivi individuati, la pianificazione del lavoro sotto forma di processi, suddivisi a loro volta in attività. Ad ognuna di queste sono state assegnate delle ore di lavoro, la cui somma sarà il totale delle ore a disposizione per lo stage.
 
 \bigskip
 
@@ -67,7 +67,7 @@ Supportato dal tutor aziendale e dai colleghi, ho iniziato lo studio degli strum
 
 \medskip
 
-Ha richiesto più tempo lo studio del software di modellazione 3D Rhinoceros. Non essendomi mai approcciato al disegno e modellazione tridimensionale, apprendere le basi è stata un'operazione più lunga del previsto, ma, una volta compreso il principio alla base, la creazione di modelli semplici è un processo abbastanza semplice.
+Ha richiesto più tempo lo studio del software di modellazione 3D Rhinoceros. Non essendomi mai approcciato al disegno e modellazione tridimensionale, apprendere le basi è stata un'operazione più lunga del previsto, ma, una volta compreso il principio alla base, la creazione di modelli semplici è un processo abbastanza intuitivo.
 
 Ho avuto la possibilità di studiare il funzionamento della stampa 3D grazie alla disponibilità di una stampante a mio uso esclusivo. Ciò mi ha permesso di effettuare diversi test modificando i parametri di stampa e sperimentando diversi materiali, il tutto prima dello sviluppo del progetto.
 
@@ -415,15 +415,20 @@ La procedura per la stampa 3D di un modello, come già sperimentato durante lo s
 Con l'involucro a disposizione ho potuto procedere con l'assemblaggio finale di tutte le componenti elettroniche, terminando così la prima versione del prodotto. A codifica completata, ho concluso con la preparazione dei test di sistema e successivamente con la loro esecuzione.
 
 \subsection{Redazione dei manuali}
-Parte dei requisiti era anche la redazione di tutti i manuali.
-In totale ho redatto tre manuali:
+I requisiti richiedevano anche la redazione dei manuali, necessari all'utente e al personale interno, per un corretto utilizzo del sistema:
 \begin{itemize}
 \item \textbf{Manuale d'uso utente}: questo manuale è stato scritto per guidare l'utente finale all'utilizzo sia della piattaforma online per la gestione degli utenti, che per l'utilizzo del sistema di apertura porta;
 \item \textbf{Manuale di installazione}: breve guida per l'installatore dove sono riportate le istruzioni per la corretta installazione delle componenti elettriche quali centralina e lettore esterno;
 \item \textbf{Manuale di configurazione}: questo è un manuale ad uso interno, il suo scopo è di guidare il tecnico durante l'assemblaggio delle componenti elettroniche e la configurazione software, operazioni previste prima della consegna al cliente;
 \end{itemize}
 
-Per la scrittura dei manuali ho utilizzato \LaTeX
+Per la scrittura dei manuali ho utilizzato \LaTeX, un linguaggio di markup utilizzato per la stesura di testi.
+Ho effettuato questa scelta per alcuni motivi in particolare:
+\begin{itemize}
+\item \textbf{Buona conoscenza del linguaggio}: ho spesso usato questo linguaggio per la stesura dei documenti di alcuni progetti universitari, per cui disponevo già di una buona conoscenza nel suo utilizzo;
+\item \textbf{Indici e riferimenti}: facilità, flessibilità ed efficienza nella creazione degli indici e dei riferimenti incrociati; occupandosi solamente del contenuto, questo tipo di strutture vengono generate automaticamente;
+\item \textbf{Gestione versionamento}: si integra perfettamente con software per il controllo della versione (Git, SVN, ...) permettendo di gestire facilmente le versioni del documento, come se fosse un software. La sua struttura permette inoltre a più utenti di lavorare contemporaneamente a diverse parti del documento.
+\end{itemize}
 
 \section{Verifica e validazione}
 \subsection{Test}\label{test}
@@ -481,7 +486,9 @@ Al termine dell'esecuzione dei test ho potuto trarre delle conclusioni rispetto 
 
 \medskip
 
-I test di unità mi sono tornati utili per poter dimostrare la correttezza e la completezza del codice scritto, analizzando porzioni di codice, nella maggior parte dei casi identificate da procedure. Di seguito i risultati di tali test:
+I test di unità mi sono tornati utili per poter dimostrare la correttezza e la completezza del codice scritto, analizzando porzioni di codice, nella maggior parte dei casi identificate da procedure. 
+
+Di seguito i risultati di tali test:
 
 \renewcommand{\arraystretch}{1.2}
 \begin{longtable}{|p{2.7cm}|l|l|l|}
