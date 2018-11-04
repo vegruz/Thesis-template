@@ -491,9 +491,9 @@ I test di unità mi sono tornati utili per poter dimostrare la correttezza e la 
 Di seguito i risultati di tali test:
 
 \renewcommand{\arraystretch}{1.2}
-\begin{longtable}{|p{2.7cm}|l|l|l|}
+\begin{longtable}{|p{2.7cm}|l|l|p{3cm}|}
 \hline
-\textbf{Applicazione} & \textbf{Test eseguiti} & \textbf{Test superati} & \textbf{Copertura} \\ 
+\textbf{Applicazione} & \textbf{Test eseguiti} & \textbf{Test superati} & \textbf{Copertura \linebreak del codice} \\ 
 \hline
 \textbf{HWFabKey} & 18 & 18 & 69\%\\ 
 \hline
@@ -501,7 +501,7 @@ Di seguito i risultati di tali test:
 \hline
 \textbf{Gestionale accessi back-end} & 33  & 33 & 78\%\\ 
 \hline
-\caption{Risultati dei test di unità.}
+\caption{Risultati dei test di unità. La copertura del codice indica in percentuale la quantità di codice messo alla prova con i test di unità, dove il 100\% indica aver testato esattamente tutte le righe di codice in tutti i possibili comportamenti.}
 \end{longtable}
 
 I test di sistema, invece, mi hanno permesso di verificare la copertura dei requisiti, confrontando quelli definiti durante la fase di analisi con quelli sviluppati al termine del progetto. Di seguito i risultati:
