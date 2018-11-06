@@ -519,4 +519,25 @@ I test di sistema, invece, mi hanno permesso di verificare la copertura dei requ
 Al seguito di tutti i test, io e il tutor abbiamo organizzato un collaudo finale convocando il cliente che avrebbe effettuato la prima installazione del prodotto. Il collaudo finale si è svolto simulando tutte le operazioni previste e dimostrando la copertura completa di tutti i requisiti richiesti in fase di analisi.
 La dimostrazione si è conclusa senza imprevisti e con la soddisfazione del cliente, inoltre io, il tutor e il cliente abbiamo firmato un verbale di collaudo che constatava la fine dello sviluppo del progetto e dava la possibilità di procedere con la prima installazione.
 
-%\section{Visione generale del progetto}
+\section{Visione generale del progetto}
+Il progetto di stage si è concluso con la consegna del prodotto al primo cliente, lo stesso che ha contribuito con idee e richieste in fase di analisi. Abbiamo effettuato l'installazione presso un Bed \& Breakfast di un rifugio in provincia di Belluno. 
+
+Premesso che i cablaggi erano già stati predisposti dagli elettricisti su nostre indicazioni, abbiamo configurato la centralina integrandola alla rete locale già presente e l'abbiamo posizionata all'interno della struttura. I moduli di lettura sono stati posizionati all'esterno in corrispondenza delle porte: il lettore NFC, a disposizione dei clienti, per l'apertura di una delle camere, mentre il modulo per la lettura dei codici a barre, a disposizione del personale, per l'apertura della porta di accesso alla struttura. 
+La configurazione del modulo di lettura dei codici a barre prevedeva la presenza di una chiave passepartout, ovvero un codice a barre, in grado di aprire la porta indipendentemente dalla tabella di autorizzazioni nel cloud. Questo permette di aprire la porta anche nel caso in cui la connessione ad internet sia assente.
+
+\begin{figure}[H]
+	\begin{center}
+	\includegraphics[scale=0.4]{immagini/rifugio.jpg}
+	\caption{Installazioni presso il rifugio. A sinistra il lettore NFC, mentre a destra il lettore di codici a barre.}
+	\end{center}
+\end{figure}
+
+L'amministratore del sistema può inserire un nuovo utente dal pannello di controllo del gestionale online e concedergli i permessi necessari ad aprire la porta tramite il codice a barre che verrà generato alla fine della procedura di creazione.
+
+\begin{figure}[H]
+	\begin{center}
+	\includegraphics[scale=0.3]{immagini/nuovo_utente.png}
+	\caption{Schermata di creazione di un nuovo utente.}
+	\end{center}
+\end{figure}
+
