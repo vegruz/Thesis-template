@@ -84,9 +84,6 @@ L'ultimo strumento oggetto di studio è stato Arduino. Ho iniziato studiando l'e
 	\end{center}
 \end{figure}
 
-\medskip
-
-%Il progetto verrà spiegato in questa sezione, senza però scendere in dettagli, evitando quindi riproducibilità.
 Lo sviluppo del progetto è partito da uno studio preliminare sul sistema già esistente composto da una centralina di controllo ed un lettore di schede NFC.
 Scendendo nei dettagli, la fase di studio è iniziata dalla centralina, composta da una scheda Arduino. Per poterne apprendere il funzionamento, il tutor aziendale mi ha fornito una scheda di test sulla quale eseguire del codice di esempio con dei semplici circuiti elettronici. L'apprendimento si è rivelato piuttosto rapido anche grazie alla vasta disponibilità di materiale online e ad una consolidata community.
 
@@ -110,7 +107,7 @@ I casi d'uso e i relativi diagrammi UML sono stati un ottimo strumento di suppor
 
 \begin{figure}[H]
 	\begin{center}
-	\includegraphics[scale=0.4]{immagini/usecase/scenario_principale.png}
+	\includegraphics[scale=0.35]{immagini/usecase/scenario_principale.png}
 	\caption{Estratto dello schema UML rappresentante i casi d'uso dello scenario principale. Schema riferito all'uso di FabKey e non alla piattaforma online.}
 	\end{center}
 \end{figure}
@@ -133,7 +130,7 @@ Essendo il progetto composto da due sistemi, FabKey e piattaforma online, i casi
 
 \begin{figure}[H]
 	\begin{center}
-	\includegraphics[scale=0.4]{immagini/usecase/UC_FK_4.png}
+	\includegraphics[scale=0.35]{immagini/usecase/UC_FK_4.png}
 	\caption{Dettaglio del caso d'uso UC\textunderscore FK.4. Si può notare l'uso della notazione sopra descritta.}
 	\end{center}
 \end{figure}
@@ -204,9 +201,6 @@ Riporto di seguito alcuni dei requisiti individuati:
 \hline
 \caption{Alcuni requisiti individuati per lo sviluppo della parte hardware di FabKey.}
 \end{longtable}
-
-
-\medskip
 
 \textbf{Portale online}
 \renewcommand{\arraystretch}{2.0}
@@ -524,8 +518,8 @@ La dimostrazione si è conclusa senza imprevisti e con la soddisfazione del clie
 \section{Visione generale del progetto}
 Il progetto di stage si è concluso con la consegna del prodotto al primo cliente, lo stesso che ha contribuito con idee e richieste in fase di analisi. Abbiamo effettuato l'installazione presso un Bed \& Breakfast di un rifugio in provincia di Belluno. 
 
-Premesso che i cablaggi erano già stati predisposti dagli elettricisti su nostre indicazioni, abbiamo configurato la centralina integrandola alla rete locale già presente e l'abbiamo posizionata all'interno della struttura. I moduli di lettura sono stati posizionati all'esterno in corrispondenza delle porte: il lettore NFC, a disposizione dei clienti, per l'apertura di una delle camere, mentre il modulo per la lettura dei codici a barre, a disposizione del personale, per l'apertura della porta di accesso alla struttura. 
-La configurazione del modulo di lettura dei codici a barre prevedeva la presenza di una chiave passepartout, ovvero un codice a barre, in grado di aprire la porta indipendentemente dalla tabella di autorizzazioni nel cloud. Questo permette di aprire la porta anche nel caso in cui la connessione ad internet sia assente.
+Premesso che, su nostre indicazioni, i cablaggi erano già stati predisposti dagli elettricisti, abbiamo configurato la centralina integrandola alla rete locale già presente e l'abbiamo posizionata all'interno della struttura. I moduli di lettura sono stati posizionati all'esterno in corrispondenza delle porte: il lettore NFC, a disposizione dei clienti, per l'apertura di una delle camere, mentre il modulo per la lettura dei codici a barre, a disposizione del personale, per l'apertura della porta di accesso alla struttura. 
+La configurazione del modulo di lettura dei codici a barre prevedeva la presenza di una chiave passepartout, ovvero un codice a barre, in grado di aprire la porta indipendentemente dalle autorizzazioni nel cloud. Questo permette di aprire la porta anche nel caso in cui la connessione ad internet sia assente.
 
 \begin{figure}[H]
 	\begin{center}
@@ -551,3 +545,9 @@ Viene così ottenuto un codice a barre, che può essere stampato su carta o invi
 	\caption{Dettaglio dei dati di un utente.}
 	\end{center}
 \end{figure}
+
+Il cliente è rimasto molto soddisfatto del lavoro svolto ed ha espresso la volontà di effettuare la stessa installazione su tutte le camere presenti.
+
+\medskip
+
+Alla fine dello stage ho avuto un colloquio con il tutor discutendo di possibili futuri miglioramenti per FabKey, offrendomi la possibilità di collaborare per poterli sviluppare.
