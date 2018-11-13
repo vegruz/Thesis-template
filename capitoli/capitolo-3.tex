@@ -58,7 +58,7 @@ Le attività individuate sono:
 
 \medskip
 
-Ho riportato gli obiettivi individuati sul piano di lavoro, categorizzandoli secondo tre tipologie come spiegato nella sezione 2.2
+Ho riportato gli obiettivi individuati sul piano di lavoro, categorizzandoli secondo tre tipologie come spiegato nella sezione\textbf{~\ref{obaz}}.
 
 
 %**************************************************************
@@ -272,7 +272,7 @@ Il maggior problema che ho riscontrato nella gestione della trasmissione dei dat
 	\end{center}
 \end{figure}
 
-Nell'hardware a disposizione le risorse erano estremamente limitate: avevo tralasciato questo aspetto dal momento che ho sempre lavorato con dispositivi la cui potenza di calcolo era trascurabile per questo tipo di operazioni. Nel caso specifico, 2 KB di memoria SRAM non erano sufficienti per la gestione dell'intero programma di controllo e contemporaneamente memorizzare una variabile di 40 byte o più, contenente la stringa con codifica hash. Per cui, collaborando con un collega, abbiamo ideato un algoritmo di crittografia semplificato, basato sul principio della funzione hash, ma in grado di produrre un output nettamente ridotto.
+Nell'hardware a disposizione le risorse erano estremamente limitate: avevo tralasciato questo aspetto dal momento che ho sempre lavorato con dispositivi la cui potenza di calcolo era ampiamente sufficiente per questo tipo di operazioni, per cui poteva non essere tenuta in considerazione. Nel caso specifico, 2 KB di memoria SRAM non erano sufficienti per la gestione dell'intero programma di controllo e contemporaneamente memorizzare una variabile di 40 byte o più, contenente la stringa con codifica hash. Per cui, collaborando con un collega, abbiamo ideato un algoritmo di crittografia semplificato, basato sul principio della funzione hash, ma in grado di produrre un output di dimensioni compatibili con le risorse a disposizione.
 
 
 \subsubsection{Protocollo di comunicazione}
@@ -510,6 +510,8 @@ I test di sistema, invece, mi hanno permesso di verificare la copertura dei requ
 \hline
 \caption{Risultati dei test di sistema.}
 \end{longtable}
+
+Da questi test si evince che due requisiti, tra quelli definiti, non sono stati soddisfatti al termine del progetto. Tali requisiti erano stati definiti come opzionali e non sono stati sviluppati, in quanto, in accordo con il tutor, abbiamo preferito sfruttare il tempo residuo per ottimizzare al meglio quanto già sviluppato, anziché aggiungere nuove funzionalità.
 
 \subsubsection{Collaudo finale e consegna}
 Al seguito di tutti i test, io e il tutor abbiamo organizzato un collaudo finale convocando il cliente che avrebbe effettuato la prima installazione del prodotto. Il collaudo finale si è svolto simulando tutte le operazioni previste e dimostrando la copertura completa di tutti i requisiti richiesti in fase di analisi.
