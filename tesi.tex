@@ -115,7 +115,7 @@
 
 
 %\noindent Esempio di utilizzo di un termine nel glossario \\
-%\gls{api}. \\
+%\gls{NFC}\textbf{\textsubscript{G}} \\
 
 %\noindent Esempio di citazione in linea \\
 %\cite{site:agile-manifesto}. \\
@@ -145,13 +145,14 @@
 \input{capitoli/capitolo-2}             % Il progetto nella strategia aziendale
 \input{capitoli/capitolo-3}             % Lo stage
 \input{capitoli/capitolo-4}             % Valutazione retrospettiva
-\appendix                               
-\input{capitoli/capitolo-A}             % Appendice A
+%\appendix                               
+%\input{capitoli/capitolo-A}             % Appendice A
 
 %**************************************************************
 % Materiale finale
 %**************************************************************
 \backmatter
 %\printglossaries                   % DA ABILITARE PER IL GLOSSARIO
+\printglossary[title=Glossario]
 \input{inizio-fine/bibliografia}
 \end{document}

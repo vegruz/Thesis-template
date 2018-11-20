@@ -37,7 +37,7 @@ Le attività individuate sono:
 \item \textbf{Modellazione e Stampa 3D}
 \begin{itemize}
 	\item \textbf{Design e modellazione involucro}: ho dedicato del tempo per la creazione digitale del modello tridimensionale per l'involucro che conterrà l'elettronica del nuovo modulo aggiunto;
-	\item \textbf{Slicing del modello e stampa 3D}: ho preparato il modello creato nell'attività precedente per la stampa andando ad impostare vari parametri al computer ed infine ho provveduto alla stampa vera e propria;
+	\item \textbf{\textit{Slicing} del modello e stampa 3D}: ho preparato il modello creato nell'attività precedente per la stampa andando ad impostare vari parametri al computer ed infine ho provveduto alla stampa vera e propria;
 \end{itemize}
 
 \item \textbf{Sviluppo piattaforma online}
@@ -85,14 +85,14 @@ L'ultimo strumento oggetto di studio è stato Arduino. Ho iniziato studiando l'e
 \end{figure}
 
 Lo sviluppo del progetto è partito da uno studio preliminare sul sistema già esistente composto da una centralina di controllo ed un lettore di schede NFC.
-Scendendo nei dettagli, la fase di studio è iniziata dalla centralina, composta da una scheda Arduino. Per poterne apprendere il funzionamento, il tutor aziendale mi ha fornito una scheda di test sulla quale eseguire del codice di esempio con dei semplici circuiti elettronici. L'apprendimento si è rivelato piuttosto rapido anche grazie alla vasta disponibilità di materiale online e ad una consolidata community.
+Scendendo nei dettagli, la fase di studio è iniziata dalla centralina, composta da una scheda Arduino. Per poterne apprendere il funzionamento, il tutor aziendale mi ha fornito una scheda di test sulla quale eseguire del codice di esempio con dei semplici circuiti elettronici. L'apprendimento si è rivelato piuttosto rapido anche grazie alla vasta disponibilità di materiale online e ad una consolidata \textit{community}.
 
 Una volta appreso il funzionamento generale di Arduino, ho iniziato lo studio sul codice che governa il comportamento della centralina di controllo, caratterizzato principalmente da 3 fasi:
 
 \begin{itemize}
 \item \textbf{Configurazione iniziale}: il sistema esegue una configurazione iniziale in modo da integrarsi perfettamente nella rete alla quale è collegato;
-\item \textbf{Listener}: una porzione di codice che rimane in continuo ascolto per catturare gli eventi derivanti dai moduli collegati;
-\item \textbf{Crittografia e HTTP request}: una funzione che si occupa della cifratura dei codici letti e del loro invio tramite richieste HTTP ad un server.
+\item \textbf{\textit{Listener}}: una porzione di codice che rimane in continuo ascolto per catturare gli eventi derivanti dai moduli collegati;
+\item \textbf{Crittografia e \textit{HTTP request}}: una funzione che si occupa della cifratura dei codici letti e del loro invio tramite richieste HTTP ad un server.
 \end{itemize}
 
 Terminata questa prima fase di studio, è susseguita quella di analisi.
@@ -262,7 +262,7 @@ Ho risolto tutto questo disegnando lo schema completo ed aiutandomi con un simul
 \end{figure}
 
 \subsubsection{Sicurezza nella trasmissione dati}
-Il maggior problema che ho riscontrato nella gestione della trasmissione dei dati è stato quello riguardante la sicurezza. A primo impatto ho pensato all'uso di una codifica con funzioni crittografiche hash, come ad esempio MD5 o SHA-1, ma non avevo preso in considerazione un aspetto molto importante: la memoria disponibile. 
+Il maggior problema che ho riscontrato nella gestione della trasmissione dei dati è stato quello riguardante la sicurezza. A primo impatto ho pensato all'uso di una codifica con funzioni crittografiche \textit{hash}, come ad esempio MD5 o SHA-1, ma non avevo preso in considerazione un aspetto molto importante: la memoria disponibile. 
 
 \begin{figure}[H]
 	\begin{center}
@@ -272,13 +272,13 @@ Il maggior problema che ho riscontrato nella gestione della trasmissione dei dat
 	\end{center}
 \end{figure}
 
-Nell'hardware a disposizione le risorse erano estremamente limitate: avevo tralasciato questo aspetto dal momento che ho sempre lavorato con dispositivi la cui potenza di calcolo era ampiamente sufficiente per questo tipo di operazioni, per cui poteva non essere tenuta in considerazione. Nel caso specifico, 2 KB di memoria SRAM non erano sufficienti per la gestione dell'intero programma di controllo e contemporaneamente memorizzare una variabile di 40 byte o più, contenente la stringa con codifica hash. Per cui, collaborando con un collega, abbiamo ideato un algoritmo di crittografia semplificato, basato sul principio della funzione hash, ma in grado di produrre un output di dimensioni compatibili con le risorse a disposizione.
+Nell'hardware a disposizione le risorse erano estremamente limitate: avevo tralasciato questo aspetto dal momento che ho sempre lavorato con dispositivi la cui potenza di calcolo era ampiamente sufficiente per questo tipo di operazioni, per cui poteva non essere tenuta in considerazione. Nel caso specifico, 2 KB di memoria SRAM non erano sufficienti per la gestione dell'intero programma di controllo e contemporaneamente memorizzare una variabile di 40 byte o più, contenente la stringa con codifica \textit{hash}. Per cui, collaborando con un collega, abbiamo ideato un algoritmo di crittografia semplificato, basato sul principio della funzione \textit{hash}, ma in grado di produrre un output di dimensioni compatibili con le risorse a disposizione.
 
 
 \subsubsection{Protocollo di comunicazione}
 Uno dei requisiti prevedeva lo scambio di informazioni tra la centralina di controllo, connessa in rete tramite cavo LAN, e il server centrale, contenente il database con gli accessi autorizzati.
 Il compito del team era di soddisfare questo requisito in modo che la comunicazione fosse il più rapida possibile.
-La soluzione adottata consiste in una semplice chiamata HTTP verso il server: viene creato un \textit{URL} composto dall'indirizzo del server e il codice di accesso richiesto, codificato tramite l'algoritmo sopra descritto; il server, ricevuta la richiesta, ricava dall'\textit{URL} il codice crittografato e lo confronta con i dati presenti nel database, rispondendo con un segnale positivo o negativo.
+La soluzione adottata consiste in una semplice chiamata HTTP verso il server: viene creato un URL composto dall'indirizzo del server e il codice di accesso richiesto, codificato tramite l'algoritmo sopra descritto; il server, ricevuta la richiesta, ricava dall'URL il codice crittografato e lo confronta con i dati presenti nel database, rispondendo con un segnale positivo o negativo.
 
 \begin{figure}[H]
 	\begin{center}
@@ -312,10 +312,10 @@ Una volta ottenuto il modello finito, ho configurato il processo di stampa grazi
 %ragioni della scelta del db relazionale
 
 \subsection{Progettazione del gestionale accessi}
-L'applicazione web per la gestione delle autorizzazioni è composta da un lato front-end e da un lato back-end. La prima parte è formata dall'interfaccia grafica e dalle componenti lato client, mentre la seconda contiene il database e le funzioni per l'elaborazione della risposta alle chiamate http da parte della centralina.
+L'applicazione web per la gestione delle autorizzazioni è composta da un lato \textit{front-end} e da un lato \textit{back-end}. La prima parte è formata dall'interfaccia grafica e dalle componenti lato client, mentre la seconda contiene il database e le funzioni per l'elaborazione della risposta alle chiamate http da parte della centralina.
 
 \subsubsection{Front-end - Interfaccia grafica}
-Facendo riferimento ai casi d'uso, ho iniziato a progettare l'interfaccia grafica della WebApp, definendo le varie sezioni di cui sarà composta.
+Facendo riferimento ai casi d'uso, ho iniziato a progettare l'interfaccia grafica della \textit{WebApp}, definendo le varie sezioni di cui sarà composta.
 Ho previsto un menù di navigazione laterale contenente i collegamenti a tutte le pagine presenti.
 
 \begin{figure}[H]
@@ -368,26 +368,26 @@ Per prima cosa ho iniziato la codifica della centralina Arduino, le tecnologie c
 \end{itemize}
 \end{itemize}
 
-La traduzione del progetto in codice in questo frangente non è stato per me difficoltoso: ho riscontrato, invece, maggiori problematiche durante la verifica del software, in seguito al caricamento sulla scheda Arduino. Grazie ad alcuni test, ho evidenziato che il codice si comportava saltuariamente in maniera anomala rispetto a quanto previsto, creando un flusso in output apparentemente casuale: ho scoperto in seguito che venivano creati dei caratteri casuali in uscita a causa di interferenze provocate dalla comunicazione seriale con il lettore di codici a barre. Il problema è stato risolto apportando alcune modifiche al software, in modo da ignorare questi caratteri dannosi. I test effettuati sono spiegati nella sezione\textbf{~\ref{test}}.
+La traduzione del progetto in codice in questo frangente non è stato per me difficoltoso: ho riscontrato, invece, maggiori problematiche durante la verifica del software, in seguito al caricamento sulla scheda Arduino. Grazie ad alcuni test, ho evidenziato che il codice si comportava saltuariamente in maniera anomala rispetto a quanto previsto, creando un flusso in output apparentemente casuale: ho scoperto in seguito che venivano creati dei caratteri casuali in uscita a causa di interferenze provocate dalla comunicazione seriale con il lettore di codici a barre. Ho risolto il problema apportando alcune modifiche al software, in modo da ignorare questi caratteri dannosi. I test effettuati sono spiegati nella sezione\textbf{~\ref{test}}.
 
 \medskip
 
 La seconda parte della codifica è stata incentrata sulla creazione del gestionale e le tecnologie utilizzate sono le seguenti:
 
 \begin{itemize}
-\item \textbf{PHP e Laravel}: per la codifica della componente back-end del gestionale ho utilizzato il linguaggio PHP con il framework Laravel, caratterizzato da un pattern di tipo Model-View-Controller. Per la gestione del Controller ho sfruttato il supporto fornito da CRUDBooster, un CRUD (Create, Read, Update, Delete) generator che, tramite un sistema a ``scaffolding'', automatizza la creazione di oggetti e interfacce. Queste per me sono state tecnologie nuove e hanno richiesto un periodo di studio individuale precedente alla fase di codifica.
+\item \textbf{PHP e Laravel}: per la codifica della componente back-end del gestionale ho utilizzato il linguaggio PHP con il framework Laravel, caratterizzato da un pattern di tipo Model-View-Controller. Per la gestione del Controller ho sfruttato il supporto fornito da CRUDBooster, un CRUD (\textit{Create}, \textit{Read}, \textit{Update}, \textit{Delete}) \textit{generator} che, tramite un sistema a ``\textit{scaffolding}'', automatizza la creazione di oggetti e interfacce. Queste per me sono state tecnologie nuove e hanno richiesto un periodo di studio individuale precedente alla fase di codifica.
 	\begin{itemize}
-		\item \textbf{Bootstrap}: è un framework front-end per la creazione di componenti lato client, integrato nel framework Laravel. Ho utilizzato la struttura messa a disposizione da Bootstrap per la creazione delle viste.
+		\item \textbf{Bootstrap}: è un \textit{framework} \textit{front-end} per la creazione di componenti lato \textit{client}, integrato nel \textit{framework} Laravel. Ho utilizzato la struttura messa a disposizione da Bootstrap per la creazione delle viste.
 	\end{itemize}
 \end{itemize}
 
 \subsection{Segnalazione bug e relativa risoluzione}
-Non di rado accadeva durante la codifica di riscontrare alcuni bug, oppure di dover integrare alcune caratteristiche al sistema non previste nella progettazione. A questo proposito, durante la fase di progettazione, il team assieme al tutor, aveva concordato una procedura per la gestione di queste situazioni tramite la piattaforma di \textit{GitLab}. Il componente del team che riscontrava un bug o riportava la richiesta di aggiungere nuove funzionalità doveva:
+Non di rado accadeva durante la codifica di riscontrare alcuni \textit{bug}, oppure di dover integrare alcune caratteristiche al sistema non previste nella progettazione. A questo proposito, durante la fase di progettazione, il team assieme al tutor, aveva concordato una procedura per la gestione di queste situazioni tramite la piattaforma di \textit{GitLab}. Il componente del team che riscontrava un \textit{bug} o riportava la richiesta di aggiungere nuove funzionalità doveva:
 \begin{itemize}
-\item Creare un nuovo \textit{issue} fornendo un titolo breve ma esaustivo e una descrizione completa di tutti i dettagli allegando, se necessario, schermate o porzioni di codice. Chi avrebbe letto l'issue avrebbe dovuto essere in grado di interpretarlo senza dover approfondire con chi l'aveva creato;
-\item Selezionare un assegnatario, che avrebbe avuto l'onere di risolvere il bug, con la possibilità di assegnare l'issue anche a se stessi;
-\item Etichettare l'issue con una o piu \textit{labels}, per identificare il tipo di problema riportato; nel caso di un problema nella codifica andava riportata la label ``bug'', oppure per l'aggiunta di nuove funzionalità ``enhancement'';
-\item Eventualmente, era possibile creare un nuovo branch nel caso di aggiunta di nuove funzionalità isolate dal branch master;
+\item Creare un nuovo \textit{issue} fornendo un titolo breve ma esaustivo e una descrizione completa di tutti i dettagli allegando, se necessario, schermate o porzioni di codice. Chi avrebbe letto l'\textit{issue} avrebbe dovuto essere in grado di interpretarlo senza dover approfondire con chi l'aveva creato;
+\item Selezionare un assegnatario, che avrebbe avuto l'onere di risolvere il bug, con la possibilità di assegnare l'\textit{issue} anche a se stessi;
+\item Etichettare l'\textit{issue} con una o piu \textit{labels}, per identificare il tipo di problema riportato; nel caso di un problema nella codifica andava riportata la label ``\textit{bug}'', oppure per l'aggiunta di nuove funzionalità ``\textit{enhancement}'';
+\item Eventualmente, era possibile creare un nuovo \textit{branch} nel caso di aggiunta di nuove funzionalità isolate dal \textit{branch master};
 \end{itemize}
 
 \subsection{Stampa 3D}
@@ -413,7 +413,7 @@ Con l'involucro a disposizione ho potuto procedere con l'assemblaggio finale di 
 \subsection{Redazione dei manuali}
 I requisiti richiedevano anche la redazione dei manuali, necessari all'utente e al personale interno, per un corretto utilizzo del sistema:
 \begin{itemize}
-\item \textbf{Manuale d'uso utente}: questo manuale è stato scritto per guidare l'utente finale all'utilizzo sia della piattaforma online per la gestione degli utenti, che per l'utilizzo del sistema di apertura porta;
+\item \textbf{Manuale d'uso utente}: ho scritto questo manuale per guidare l'utente finale all'utilizzo sia della piattaforma online per la gestione degli utenti, che per l'utilizzo del sistema di apertura porta;
 \item \textbf{Manuale di installazione}: breve guida per l'installatore dove sono riportate le istruzioni per la corretta installazione delle componenti elettriche quali centralina e lettore esterno;
 \item \textbf{Manuale di configurazione}: questo è un manuale ad uso interno, il suo scopo è di guidare il tecnico durante l'assemblaggio delle componenti elettroniche e la configurazione software, operazioni previste prima della consegna al cliente;
 \end{itemize}
@@ -443,7 +443,7 @@ I test di unità che ho previsto avevano la seguente struttura:
 \begin{enumerate}
 \item Per prima cosa ho isolato la parte di codice di interesse, rendendola eseguibile come programma esterno;
 \item Ho composto una previsione di output anche relazionata all'eventuale input fornito all'unità;
-\item Nel caso in cui la porzione di codice effettuasse chiamate a funzioni di librerie esterne, ho creato dei mock-up che avrebbero simulato il comportamento di tali procedure, in modo da testare esclusivamente la qualità del codice scritto da me;
+\item Nel caso in cui la porzione di codice effettuasse chiamate a funzioni di librerie esterne, ho creato dei \textit{mock-up} che avrebbero simulato il comportamento di tali procedure, in modo da testare esclusivamente la qualità del codice scritto da me;
 \item Dopo l'esecuzione del test, se l'output corrispondeva alle attese si procedeva al caricamento del test sulla scheda Arduino, altrimenti si modificava il codice in modo da correggerlo;
 \item Se il comportamento del codice eseguito sulla scheda Arduino era ancora corretto, il test terminava, altrimenti si procedeva identificando e correggendo la natura del comportamento anomalo.
 \end{enumerate}
@@ -459,9 +459,9 @@ Con questa procedura ho riscontrato, come atteso, che circa nel 90\% dei casi la
 
 \subsubsection{Test gestionale utente}
 Parallelamente ad Arduino, e quindi alla centralina, dovevo eseguire dei test anche sulla piattaforma online di gestione degli accessi.
-Anche in questo caso ho previsto alcuni test di unità sul codice PHP che gestisce la parte dinamica dell'applicazione. Per farlo ho utilizzato il framework di testing PHPUnit, incluso nel framework Laravel; ho isolato singolarmente le funzionalità implementate oggetto di test e, per ognuna di queste, scritto degli snippet per simularne il funzionamento sia in condizioni normali che anomale.
+Anche in questo caso ho previsto alcuni test di unità sul codice PHP che gestisce la parte dinamica dell'applicazione. Per farlo ho utilizzato il \textit{framework} di \textit{testing} PHPUnit, incluso nel \textit{framework} Laravel; ho isolato singolarmente le funzionalità implementate oggetto di test e, per ognuna di queste, scritto degli \textit{snippet} per simularne il funzionamento sia in condizioni normali che anomale.
 
-Laravel mette inoltre a disposizione un API di semplice utilizzo per effettuare chiamate HTTP e verificare l'output di tali chiamate. Ho utilizzato queste funzionalità per testare l'applicazione in tutte le sue parti, simulando l'utilizzo da parte di un utente, ma ho anche testato la funzione che gestisce le chiamate HTTP da parte della centralina, simulando l'invio di alcune chiavi e analizzando la risposta del server.
+Laravel mette inoltre a disposizione un \gls{api}\textbf{\textsubscript{G}} di semplice utilizzo per effettuare chiamate HTTP e verificare l'output di tali chiamate. Ho utilizzato queste funzionalità per testare l'applicazione in tutte le sue parti, simulando l'utilizzo da parte di un utente, ma ho anche testato la funzione che gestisce le chiamate HTTP da parte della centralina, simulando l'invio di alcune chiavi e analizzando la risposta del server.
 
 \medskip
 
@@ -521,7 +521,7 @@ La dimostrazione si è conclusa senza imprevisti e con la soddisfazione del clie
 Il progetto di stage si è concluso con la consegna del prodotto al primo cliente, lo stesso che ha contribuito con idee e richieste in fase di analisi. Abbiamo effettuato l'installazione presso un Bed \& Breakfast di un rifugio in provincia di Belluno. 
 
 Premesso che, su nostre indicazioni, i cablaggi erano già stati predisposti dagli elettricisti, abbiamo configurato la centralina integrandola alla rete locale già presente e l'abbiamo posizionata all'interno della struttura. I moduli di lettura sono stati posizionati all'esterno in corrispondenza delle porte: il lettore NFC, a disposizione dei clienti, per l'apertura di una delle camere, mentre il modulo per la lettura dei codici a barre, a disposizione del personale, per l'apertura della porta di accesso alla struttura. 
-La configurazione del modulo di lettura dei codici a barre prevedeva la presenza di una chiave passepartout, ovvero un codice a barre, in grado di aprire la porta indipendentemente dalle autorizzazioni nel cloud. Questo permette l'apertura della porta anche nel caso in cui la connessione ad internet sia assente.
+La configurazione del modulo di lettura dei codici a barre prevedeva la presenza di una chiave \textit{passepartout}, ovvero un codice a barre, in grado di aprire la porta indipendentemente dalle autorizzazioni nel cloud. Questo permette l'apertura della porta anche nel caso in cui la connessione ad internet sia assente.
 
 \begin{figure}[H]
 	\begin{center}
