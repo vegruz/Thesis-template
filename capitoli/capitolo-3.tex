@@ -461,7 +461,7 @@ Con questa procedura ho riscontrato, come atteso, che circa nel 90\% dei casi la
 Parallelamente ad Arduino, e quindi alla centralina, dovevo eseguire dei test anche sulla piattaforma online di gestione degli accessi.
 Anche in questo caso ho previsto alcuni test di unità sul codice PHP che gestisce la parte dinamica dell'applicazione. Per farlo ho utilizzato il \textit{framework} di \textit{testing} PHPUnit, incluso nel \textit{framework} Laravel; ho isolato singolarmente le funzionalità implementate oggetto di test e, per ognuna di queste, scritto degli \textit{snippet} per simularne il funzionamento sia in condizioni normali che anomale.
 
-Laravel mette inoltre a disposizione un \gls{api}\textbf{\textsubscript{G}} di semplice utilizzo per effettuare chiamate HTTP e verificare l'output di tali chiamate. Ho utilizzato queste funzionalità per testare l'applicazione in tutte le sue parti, simulando l'utilizzo da parte di un utente, ma ho anche testato la funzione che gestisce le chiamate HTTP da parte della centralina, simulando l'invio di alcune chiavi e analizzando la risposta del server.
+Laravel mette inoltre a disposizione un \gls{api}\textbf{\textsubscript{[G]}} di semplice utilizzo per effettuare chiamate HTTP e verificare l'output di tali chiamate. Ho utilizzato queste funzionalità per testare l'applicazione in tutte le sue parti, simulando l'utilizzo da parte di un utente, ma ho anche testato la funzione che gestisce le chiamate HTTP da parte della centralina, simulando l'invio di alcune chiavi e analizzando la risposta del server.
 
 \medskip
 
